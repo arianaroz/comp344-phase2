@@ -8,7 +8,7 @@ include("common_db.php");
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" href="style.css" >
+<link rel="stylesheet" href="style1.css" >
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
