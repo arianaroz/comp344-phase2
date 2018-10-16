@@ -1,0 +1,76 @@
+body{
+font-family: 'Open Sans';
+width: 100%;
+margin:0;
+padding:0;
+}
+
+
+.loginContainer{
+    margin: auto;
+    width: 40%;
+    height: 300px;
+    padding: 50px;
+    padding-top: 5%;
+    font-size: 12px;
+    text-align: center; 
+   
+}
+
+input{
+    width: 250px;
+    padding: 12px 10px;
+    margin: 8px 0;
+    font-size: 12px;
+}
+
+label {
+    width: 100px;
+    margin: 5px 1px;
+    height: 5px;
+    display: inline-block;
+}
+#submit{
+    width: 250px;
+    padding: 10px 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #c4586d;
+    border-radius: 2px;
+    background-color: rgba(237, 52, 70, 0.7);
+}
+
+.button {
+font-size: 10px;
+cursor: pointer;
+}
+.button:hover{
+    opacity: 0.9;
+
+}
+
+.signin{
+    width:50%;
+    margin: auto;
+    border-radius: 1px solid red;
+
+}
+#login-btn{
+    padding: 10px 20px;
+    width: 250px;
+    cursor: pointer;
+    border: 1px solid #c4586d;
+    border-radius: 2px;
+    background-color: rgba(237, 52, 70, 0.7);
+
+}
+
+#login-btn:hover{
+    opacity: 0.9;
+}
+#link{
+    padding-top: 5px;
+    text-align: center;
+}
+
