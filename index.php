@@ -1,4 +1,5 @@
 <?php include("db.php");
+    include("common_db.php");
 include("functions.php"); ?>
 
 <html>
