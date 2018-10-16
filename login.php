@@ -30,7 +30,7 @@ include("common_db.php");
   <div>
       <input type="password" name="password" id="inputPassword" class="login-form" placeholder="Password" required>
      <div> <button id="login-btn" class="button" type="submit" name="login">Sign In</button> </div>
-     <div id="link">Don't have an account? <a id="registerlink" href="register.html">Sign Up</a></div>
+     <div id="link">Don't have an account? <a id="registerlink" href="register.php">Sign Up</a></div>
      </div>
     </form>
 
