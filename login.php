@@ -8,7 +8,7 @@ if(isset($_POST['login'])){
 $username= $_POST['username'];
 $password= $_POST['password'];
 
-$query= "select shopper_id, sh_password FROM Shopper WHERE sh_username=?";
+$query= "SELECT shopper_id, sh_password FROM Shopper WHERE sh_username=?";
 
 
 $result = $conn->query($query);
