@@ -2,6 +2,21 @@
 
 include("common_db.php");
 
+
+if(isset($_POST['login'])){
+
+$username= $_POST['username'];
+$password= $_POST['password'];
+
+$query= "select shopper_id, sh_password FROM Shopper WHERE sh_username=?";
+
+
+$result = $conn->query($query);
+
+if($result->num_rows == 0){
+  $error ="Incorrect username";
+}
+
 ?>
 
 <html>
@@ -14,7 +29,6 @@ include("common_db.php");
 
 <script type="text/javascript">
 
-
 </script>
 
 
@@ -25,7 +39,7 @@ include("common_db.php");
       <h2 class="signin-heading">Sign In</h2>
       <div class="error"><?php echo $error;?></div>
       <div class="input-group">
-    <input type="text" name="email" class="login-form" placeholder="Email" required>
+    <input type="text" name="username" class="login-form" placeholder="Username" required>
   </div>
   <div>
       <input type="password" name="password" id="inputPassword" class="login-form" placeholder="Password" required>
