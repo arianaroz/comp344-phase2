@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+    include("db.php");
 
 // Regular Expression for form validation
 function name_validation($text){

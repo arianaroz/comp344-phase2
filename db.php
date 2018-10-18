@@ -1,8 +1,8 @@
 <?php
 $servername = "127.0.0.1";
 $username = "root";
-$password = "ab12345678";
-$dbname = "Phase_2";
+$password = "ab12345678!";
+$dbname = "comp344";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);

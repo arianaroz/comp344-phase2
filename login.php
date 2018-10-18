@@ -1,55 +1,57 @@
 <?php
 
-include("common_db.php");
+require_once("db.php");
 
+function check_credentials($username, $password) {
+	$query  = "SELECT shopper_id, sh_password FROM Shopper ";
+	$query .= "WHERE sh_username = ?";
+		
+	$dbo = db_connect();
+		
+	$statement = $dbo->prepare($query);
+	$statement->execute(array($username));
 
-if(isset($_POST['login'])){
-
-$username= $_POST['username'];
-$password= $_POST['password'];
-
-$query= "SELECT shopper_id, sh_password FROM Shopper WHERE sh_username=?";
-
-
-$result = $conn->query($query);
-
-if($result->num_rows == 0){
-  $error ="Incorrect username";
+	$row = $statement->fetch();
+	if ($row[0] > 0) {
+		if (password_verify($password, $row[1]))
+			return($row[0]);
+		else
+			return(0);
+	}
+	else {
+		return(0);
+	}
 }
 
-?>
+function login($username, $password) {
 
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Login</title>
-<link rel="stylesheet" href="style1.css" >
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-</head>
+	$shopper_id = check_credentials($username, $password);
+	if ($shopper_id > 0) {
+		session_regenerate_id(TRUE);
 
-<script type="text/javascript">
+		$sessid = session_id();
+		$dbo = db_connect();
 
-</script>
+		$query  = "INSERT INTO Session (id, Shopper_id) VALUES (?,?)";
+		
+		try {
+			$statement = $dbo->prepare($query);
+			$success = $statement->execute(array($sessid, $shopper_id));
+		}
+		catch (PDOException $ex) {
+			error_log($ex->getMessage());
+			die($ex->getMessage());
+		}
+		return (TRUE);
+	}
+	else {
+		return (FALSE);
+	}
+}
 
-
-
-<div class="loginContainer">
-
-<form class="signin" method="POST">
-      <h2 class="signin-heading">Sign In</h2>
-      <div class="error"><?php echo $error;?></div>
-      <div class="input-group">
-    <input type="text" name="username" class="login-form" placeholder="Username" required>
-  </div>
-  <div>
-      <input type="password" name="password" id="inputPassword" class="login-form" placeholder="Password" required>
-     <div> <button id="login-btn" class="button" type="submit" name="login">Sign In</button> </div>
-     <div id="link">Don't have an account? <a id="registerlink" href="register.php">Sign Up</a></div>
-     </div>
-    </form>
-
-    
-</div>
-
-</body>
-</html>
+function logout() {
+	
+	session_regenerate_id(TRUE);
+	session_destroy();
+	// End the session;
+}
