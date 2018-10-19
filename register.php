@@ -34,7 +34,7 @@ include("functions.php");?>
   <div id="rerr" class="regi_error"></div>
   </div>
 </div>
-  <div id="footer">
+  <div class="footer">
   <?php include("footer.php"); ?>
   </div>
 </body>

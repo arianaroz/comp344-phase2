@@ -6,6 +6,8 @@ include("functions.php"); ?>
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style.css1">
+  <link rel="stylesheet" href="css/bulma.css" type="text/css"/>
+
   <title>Macquarie University Online Store - Phase 2</title>
 </head>
 
@@ -24,7 +26,7 @@ if (isset($_POST['logout'])){
 ?>
 
 </div>
-<div id="footer">
+<div class="footer">
 <?php include("footer.php"); ?>
 </div>
 </html>

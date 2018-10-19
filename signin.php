@@ -13,11 +13,16 @@ include("db.php");
 
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
-<link rel="stylesheet" href="style1.css" >
+<link rel="stylesheet" href="style1.css" type="text/css"/ >
+<link rel="stylesheet" href="css/bulma.css" type="text/css"/>
+
+
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
@@ -46,7 +51,7 @@ include("db.php");
 
 </div>
 
-<div id="footer">
+<div class="footer">
 <?php include("footer.php"); ?>
 </div>
 
