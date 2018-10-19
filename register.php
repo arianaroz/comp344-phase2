@@ -12,7 +12,7 @@ include("functions.php");?>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
   <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
   <script src='https://www.google.com/recaptcha/api.js'></script>
-  <title>Macquarie University Online Store - Phase 2</title>
+  <title>Register</title>
 </head>
 <body>
 

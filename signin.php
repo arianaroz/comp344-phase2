@@ -1,10 +1,10 @@
 <?php
 
-include("common_db.php");
+include("db.php");
     include("login.php");
     $username = $_POST[‘username’];
     $password = $_POST[‘password’];
-    
+
     if(isset($_POST['login'])){
         login($username, $password);
     }
@@ -38,11 +38,12 @@ include("common_db.php");
   <div>
       <input type="password" name="password" id="inputPassword" class="login-form" placeholder="Password" required>
      <div> <button id="login-btn" class="button" type="submit" name="login">Sign In</button> </div>
+     <div id="passlink"> <a id="passwordlink" href=""> Forgot your password? </a> </div>
      <div id="link">Don't have an account? <a id="registerlink" href="register.php">Sign Up</a></div>
      </div>
     </form>
 
-    
+
 </div>
 
 </body>
