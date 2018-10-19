@@ -1,9 +1,15 @@
+
+
 body{
 font-family: 'Open Sans';
 width: 100%;
-min-height: 100vh;
+height: 100%;
 margin:0;
 padding:0;
+}
+
+.wrapper{
+    height: 100%;
 }
 
 
@@ -31,14 +37,12 @@ input{
     border-right: none;
     border-bottom: 1px solid black;
 
-
 }
 .login-form{
     text-align: left;
     padding: inherit;
     padding-top: 8px;
     padding-bottom: 10px;
-
 
 }
 
@@ -62,7 +66,48 @@ label {
     border-radius: 2px;
     background-color: rgba(237, 52, 70, 0.7);
 }
+.heading_regi{
+    margin: auto;
+    padding-top: 5%;
+    text-align: center;
+}
 
+.registration{
+    margin: auto;
+    margin-top: 10%;
+    height: 570px;
+    width: 530px;
+    padding: 5px;
+    padding-bottom: 10px;
+    font-size: 11px;
+    border: black 1px solid;
+
+}
+.register{
+    margin: 0 auto;
+    margin-top: 8%;
+    width: 300px;
+
+}
+.r{
+    width: 300px;
+    text-align: left;
+    padding: inherit;
+    padding-top: 8px;
+    padding-bottom: 10px;
+
+}
+
+#submit{
+    width: 300px;
+    padding: 10px 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #c4586d;
+    border-radius: 2px;
+    background-color: rgba(237, 52, 70, 0.7);
+}
 .button {
 font-size: 10px;
 cursor: pointer;
@@ -110,8 +155,11 @@ a:visited {
 
 #main{
     display: flex;
-    min-height: 70px;
+    width: 100%;
     flex-direction: column;
+    margin-bottom: -200px;
+    height: auto;
+
 
 }
 
@@ -120,10 +168,9 @@ a:visited {
     padding: 1em;
     padding-left: 20px;
     padding-top: 20px;
-    margin-bottom: -140px;
     flex: 1;
+
     bottom:0;
-    height:120px;
     background-color: #232528;
     font-size: 12px;
 }
@@ -147,4 +194,5 @@ a:visited {
 #copyright{
     float: right;
     padding: 1em;
+    margin-top: 10%;
 }

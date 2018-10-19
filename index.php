@@ -5,9 +5,11 @@ include("functions.php"); ?>
 
 <html>
 <head>
-  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <link rel="stylesheet" type="text/css" href="style.css1">
   <title>Macquarie University Online Store - Phase 2</title>
 </head>
+
+<div class="wrapper">
 <body>
 This is the homepage.
 <form method="post">
@@ -20,4 +22,9 @@ if (isset($_POST['logout'])){
   echo "<script>window.location = '/register.php'</script>";
 }
 ?>
+
+</div>
+<div id="footer">
+<?php include("footer.php"); ?>
+</div>
 </html>

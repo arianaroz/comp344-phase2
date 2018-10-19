@@ -10,26 +10,32 @@ include("functions.php");?>
 <html>
 <head>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
-  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <link rel="stylesheet" type="text/css" href="style.css1">
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <title>Register</title>
 </head>
 <body>
-
+<div class="wrapper">
   <div class="registration">
-    <div class="heading_regi">Register</div>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-    <input id ="username" type="text" name="username" placeholder="Username" required><br/>
+
+  <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+      <div class="heading_regi"><h2>Create an Account<h2></div>
+    <input class="r" id ="username" type="text" name="username" placeholder="Username" required><br/>
     <!-- <div class="tagline">Ex: John Smith</div> -->
-    <input id ="email" type="email" name="email" placeholder="MQ Email" required><br/>
+    <input class="r" id ="email" type="email" name="email" placeholder="Email Address" required><br/>
     <!-- <div class="tagline">Ex: firstname.lastname@mq.edu.au</div> -->
-    <input id ="phone" type="tel" name="phone" placeholder="Phone Number" required><br/>
-    <input id ="password" type="password" name="password" placeholder="Password" required><br/>
+    <input class="r" id ="phone" type="tel" name="phone" placeholder="Phone Number" required><br/>
+    <input class="r"id ="password" type="password" name="password" placeholder="Password" required><br/>
+    <input class="r"id ="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" required><br/>
     <!-- <div class="tagline">6 - 10 characters, must contain at least one number and starts with an alphabet</div> -->
     <div class="g-recaptcha" data-sitekey="6LenP3UUAAAAAD2ss0_c0u4509yIayZT2nvLqr9v"></div>
-    <input type="submit" name="reg_button" value="Register" />
+    <input class="button" type="submit" id="submit" name="reg_button" value="Register" />
   </form>
   <div id="rerr" class="regi_error"></div>
+  </div>
+</div>
+  <div id="footer">
+  <?php include("footer.php"); ?>
   </div>
 </body>
 </html>

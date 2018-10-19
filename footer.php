@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
-<div id="main">
+
 <footer class= "footer">
 
 <div class="col">
@@ -28,7 +28,7 @@
         <menu> Payment </menu>
     </div>
 </div>
-</div>
+
 
 
 
