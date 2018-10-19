@@ -10,7 +10,7 @@ include("functions.php");?>
 <html>
 <head>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
-  <link rel="stylesheet" type="text/css" href="style.css1">
+  <link rel="stylesheet" type="text/css" href="style1.css">
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <title>Register</title>
 </head>
