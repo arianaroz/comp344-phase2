@@ -21,15 +21,18 @@ include("db.php");
 <title>Login</title>
 <link rel="stylesheet" href="style1.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
-
+<body>
 <script type="text/javascript">
 
 </script>
+<section class="hero has-background-white-bis is-medium">
+<div class="hero-body">
         <div class="loginContainer">
 
         <form class="signin" method="POST">
-            <h2 class="signin-heading">Sign In</h2>
+            <h5 class="title is-5">Sign In</h5>
             <div class="error"><?php echo $error;?></div>
             <input type="text" name="username" class="login-form" placeholder="Username" required>
         <div>
@@ -40,7 +43,8 @@ include("db.php");
         </div>
     </form>
 </div>
-
+</div>
+</section>
 <div class="footer">
 <?php include("footer.php"); ?>
 </div>

@@ -12,15 +12,16 @@ include("functions.php");?>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
   <link rel="stylesheet" type="text/css" href="style1.css">
   <script src='https://www.google.com/recaptcha/api.js'></script>
-  
+
   <title>Register</title>
 </head>
 <body>
 <div class="wrapper">
-  <div class="registration">
 
+  <div class="registration">
   <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
       <div class="heading_regi"><h2>Create an Account<h2></div>
+          <div id="rerr" class="regi_error"></div>
     <input class="r" id ="username" type="text" name="username" placeholder="Username" required><br/>
     <!-- <div class="tagline">Ex: John Smith</div> -->
     <input class="r" id ="email" type="email" name="email" placeholder="Email Address" required><br/>
@@ -32,12 +33,14 @@ include("functions.php");?>
     <div class="g-recaptcha" data-sitekey="6LenP3UUAAAAAD2ss0_c0u4509yIayZT2nvLqr9v"></div>
     <input class="button" type="submit" id="submit" name="reg_button" value="Register" />
   </form>
-  <div id="rerr" class="regi_error"></div>
+
   </div>
+
 </div>
-  <div class="footer">
-  <?php include("footer.php"); ?>
-  </div>
+
+<div class="footer">
+<?php include("footer.php"); ?>
+</div>
 </body>
 </html>
 

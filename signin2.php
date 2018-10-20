@@ -28,20 +28,19 @@ include("db.php");
 </script>
 
 <body>
-<section class="hero has-background-white-bis is-large">
+<section class="hero has-background-white-bis is-medium">
     <div class="hero-body">
+        <div class="logincontainer has-background-white">
+            <h5 class="title is-5">Sign in</h5>
          <div class="columns is-centered">
               <div class="card-content">
 
-            <div class="field">
-  <p class="control has-icons-left has-icons-right">
-    <input class="input" type="email" placeholder="Email">
+            <div class="field ">
+  <p class="control has-icons-left ">
+    <input class="input" type="text" placeholder="Username">
     <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
+      <i class="fas fa-user"></i>
+  </span>
   </p>
 </div>
 <div class="field">
@@ -54,15 +53,22 @@ include("db.php");
 </div>
 <div class="field">
   <p class="control">
-    <button class="button is-fullwidth has-background-primary	">
+    <button class="button is-fullwidth has-background-primary">
       Login
     </button>
   </p>
 </div>
+
+<div class="field ">
+    <div class="is-size-7" id="passlink"> <a id="passwordlink" href=""> Forgot your password? </a> </div>
+    <div class="is-size-7" id="link">Don't have an account? <a id="registerlink" href="register.php">Sign Up</a></div>
+</div>
+</div>
 </div>
 </div>
 
 
+</div>
 </div>
 </section
 
