@@ -11,7 +11,10 @@ include("functions.php");?>
 <head>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
   <link rel="stylesheet" type="text/css" href="style1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+
   <script src='https://www.google.com/recaptcha/api.js'></script>
+
 
   <title>Register</title>
 </head>
@@ -31,7 +34,7 @@ include("functions.php");?>
     <input class="r"id ="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" required><br/>
     <!-- <div class="tagline">6 - 10 characters, must contain at least one number and starts with an alphabet</div> -->
     <div class="g-recaptcha" data-sitekey="6LenP3UUAAAAAD2ss0_c0u4509yIayZT2nvLqr9v"></div>
-    <input class="button" type="submit" id="submit" name="reg_button" value="Register" />
+    <button class="button is-fullwidth has-background-primary" type="submit" class="button" name="reg_button">Register </button>
   </form>
 
   </div>
