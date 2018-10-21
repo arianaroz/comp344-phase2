@@ -45,7 +45,7 @@ include("db.php");
         </div>
 
     <div class="field ">
-        <div class="is-size-7" id="link"> <a id="goBack" href="signin2.php">Go Back</a></div>
+        <div class="is-size-7" id="link"> <a id="goBack" href="signin.php">Go Back</a></div>
     </div>
     </div>
     </div>
