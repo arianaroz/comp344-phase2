@@ -56,6 +56,7 @@ function password_validation($text){
     return false;
   }
 
+
   if (preg_match($re, $text)==false){
     echo "
     <div class='regi_error'>

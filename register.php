@@ -12,34 +12,55 @@ include("functions.php");?>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
   <link rel="stylesheet" type="text/css" href="style1.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-
   <script src='https://www.google.com/recaptcha/api.js'></script>
 
 
-  <title>Register</title>
+<title>Register</title>
 </head>
 <body>
-<div class="wrapper">
+<section class="hero has-background-white-bis is-medium">
+    <div class="hero-body">
 
-  <div class="registration">
-  <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-      <div class="heading_regi"><h2>Create an Account<h2></div>
+  <div class="registration has-background-white">
+    <div class="columns is-centered">
+        <div class="card-content">
+            <h5 class="title is-5">Create an account</h5>
+
+    <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
           <div id="rerr" class="regi_error"></div>
-    <input class="r" id ="username" type="text" name="username" placeholder="Username" required><br/>
+
+    <div class="field">
+        <input class="input" id ="username" type="text" name="username" placeholder="Username" required><br/>
+    </div>
     <!-- <div class="tagline">Ex: John Smith</div> -->
-    <input class="r" id ="email" type="email" name="email" placeholder="Email Address" required><br/>
+    <div class="field">
+        <input class="input" id ="email" type="email" name="email" placeholder="Email Address" required><br/>
+    </div>
     <!-- <div class="tagline">Ex: firstname.lastname@mq.edu.au</div> -->
-    <input class="r" id ="phone" type="tel" name="phone" placeholder="Phone Number" required><br/>
-    <input class="r"id ="password" type="password" name="password" placeholder="Password" required><br/>
-    <input class="r"id ="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" required><br/>
+    <div class="field">
+        <input class="input" id ="phone" type="tel" name="phone" placeholder="Phone Number" required><br/>
+    </div>
+    <div class="field">
+        <input class="input" id ="password" type="password" name="password" placeholder="Password" required><br/>
+    </div>
+    <div class="field">
+        <input class="input" id ="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" required><br/>
+    </div>
     <!-- <div class="tagline">6 - 10 characters, must contain at least one number and starts with an alphabet</div> -->
+
+    <div class="field">
     <div class="g-recaptcha" data-sitekey="6LenP3UUAAAAAD2ss0_c0u4509yIayZT2nvLqr9v"></div>
-    <button class="button is-fullwidth has-background-primary" type="submit" class="button" name="reg_button">Register </button>
-  </form>
-
-  </div>
-
 </div>
+    <div class="field">
+    <button class="button is-fullwidth has-background-primary" type="submit" class="button" name="reg_button">Register </button>
+</div>
+</div>
+  </form>
+</div>
+</div>
+</div>
+</section>
+
 
 <div class="footer">
 <?php include("footer.php"); ?>

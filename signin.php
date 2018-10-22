@@ -37,21 +37,18 @@ include("db.php");
               <div class="card-content">
 
             <div class="field ">
-  <p class="control has-icons-left ">
-    <input class="input" type="text" name="username" placeholder="Username" required>
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-  </span>
-  </p>
-</div>
-<div class="field">
-  <p class="control has-icons-left">
-    <input class="input" type="password" name="password" placeholder="Password" required>
-    <span class="icon is-small is-left">
-      <i class="fas fa-lock"></i>
-    </span>
-  </p>
-</div>
+            <form>
+                <p class="control has-icons-left ">
+                    <input class="input" type="text" name="username" placeholder="Username" required>
+                    <span class="icon is-small is-left"> <i class="fas fa-user"></i></span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" type="password" name="password" placeholder="Password" required>
+                    <span class="icon is-small is-left"> <i class="fas fa-lock"></i></span>
+                </p>
+            </div>
 <div class="field">
   <p class="control">
     <button class="button is-fullwidth has-background-primary" type="submit" name="login">
@@ -59,7 +56,7 @@ include("db.php");
     </button>
   </p>
 </div>
-
+</form>
 <div class="field ">
     <div class="is-size-7" id="passlink"> <a id="passwordlink" href="forgotPassword.php"> Forgot your password? </a> </div>
     <div class="is-size-7" id="link">Don't have an account? <a id="registerlink" href="register.php">Sign Up</a></div>
