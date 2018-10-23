@@ -11,8 +11,8 @@ include("functions.php");?>
 <head>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
   <link rel="stylesheet" type="text/css" href="style1.css">
-  <link rel="stylesheet" type="text/css" href="bulma.css">
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+ <script src='https://www.google.com/recaptcha/api.js'></script>
 
 
 <title>Register</title>

@@ -194,7 +194,3 @@ a:visited {
 .error{
     z-index: 10;
 }
-
-#rerr{
-    border: 1px red solid;
-}

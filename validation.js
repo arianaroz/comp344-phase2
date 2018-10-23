@@ -212,3 +212,12 @@ function logValidate(){
     return false;
   }
 }
+
+function emailValidate(){
+    re = /^[\w]+\.[\w]+-?[\w]/;
+    text = document.getElementById('email').value;
+    if (re.test(text)==false){
+    alert('Please provide a valid email address');
+        return false;
+}
+}

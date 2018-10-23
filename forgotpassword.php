@@ -1,15 +1,9 @@
 <?php
-include("db.php"); ?>
-
-<?php
+include("db.php");
 $error= "";
 
 
-if (isset($_POST['submit'])){
-    echo 'hello';
 
-    $error = 'hello';
-}
 
 ?>
 <html>
@@ -17,11 +11,11 @@ if (isset($_POST['submit'])){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="style1.css">
-    <link rel="stylesheet" type="text/css" href="bulma.css">
-
+<link rel="stylesheet" type="text/css" href="style1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
+<script type="text/javascript" src="validation.js" ></script>
 </head>
 
 
@@ -39,9 +33,9 @@ if (isset($_POST['submit'])){
             <div class="columns is-centered">
                  <div class="card-content">
                 <div class="field ">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <form action="" method="POST" id="form">
                     <p class="control has-icons-left ">
-                    <input class="input" type="text" name="email" placeholder="Email" required>
+                    <input class="input" id="email" type="email" name="email" placeholder="Email" required>
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>
@@ -50,7 +44,7 @@ if (isset($_POST['submit'])){
 
         <div class="field">
             <p class="control">
-                <button class="button is-fullwidth has-background-primary" type="submit" name"submit">Submit</button>
+                <button class="button is-fullwidth has-background-primary"  onclick="return emailValidate();" type="submit" name"submit">Submit</button>
             </p>
         </div>
     </div>
@@ -64,6 +58,13 @@ if (isset($_POST['submit'])){
     </div>
 </section>
 
+<?php
+
+if(isset($_POST['submit'])){
+    echo"hello";
+}
+
+?>
 
 
 
