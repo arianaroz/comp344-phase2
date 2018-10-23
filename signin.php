@@ -19,13 +19,11 @@ include("db.php");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" type="text/css" href="style1.css">
+<link rel="stylesheet" type="text/css" href="bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
 </head>
-
-<script type="text/javascript">
-</script>
 
 <body>
 <section class="hero has-background-white-bis is-medium">
@@ -51,7 +49,7 @@ include("db.php");
             </div>
 <div class="field">
   <p class="control">
-    <button class="button is-fullwidth has-background-primary" type="submit" name="login">
+    <button class="button is-fullwidth has-background-primary" onclick="return logValidate();" type="submit" name="login">
       Login
     </button>
   </p>

@@ -11,7 +11,7 @@ include("functions.php");?>
 <head>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
   <link rel="stylesheet" type="text/css" href="style1.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="bulma.css">
   <script src='https://www.google.com/recaptcha/api.js'></script>
 
 
@@ -25,9 +25,9 @@ include("functions.php");?>
     <div class="columns is-centered">
         <div class="card-content">
             <h5 class="title is-5">Create an account</h5>
-
+    <div id="rerr" class="regi_error"></div>
     <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <div id="rerr" class="regi_error"></div>
+
 
     <div class="field">
         <input class="input" id ="username" type="text" name="username" placeholder="Username" required><br/>
@@ -106,6 +106,7 @@ include("functions.php");?>
         $_email = $_POST['email'];
         $_phone = $_POST['phone'];
         $_password = $_POST['password'];
+        $_confirmPass = $_POST['confirmPassword'];
 
 
         // if (name_validation($_username)==false){
@@ -116,6 +117,9 @@ include("functions.php");?>
         }
         elseif (password_validation($_password)==false) {
           return;
+        }
+        elseif (passwordCheck($_password, $_confirmPass)== false){
+            return;
         }
 
         $hashed_password = password_hash($_password, PASSWORD_DEFAULT);

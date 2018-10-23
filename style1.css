@@ -4,7 +4,7 @@ width: 100%;
 height: 100%;
 margin:0;
 padding:0;
-background-color: hsl(0, 0%, 98%);
+/*background-color: hsl(0, 0%, 98%);*/
 }
 
 .wrapper{
@@ -189,4 +189,12 @@ a:visited {
     text-align: center;
     border: 1px solid #bfc0c1;
 
+}
+
+.error{
+    z-index: 10;
+}
+
+#rerr{
+    border: 1px red solid;
 }
