@@ -26,7 +26,7 @@ include("db.php");
 </head>
 
 <body>
-<section class="hero has-background-white-bis is-medium">
+<section class="hero has-background-white-bis is-large">
     <div class="hero-body">
         <div class="logincontainer has-background-white">
             <h5 class="title is-5">Sign in</h5>

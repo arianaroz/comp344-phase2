@@ -10,7 +10,8 @@ include("functions.php");?>
 <html>
 <head>
   <!-- <script type="text/javascript" src="validation.js" ></script> -->
-  <link rel="stylesheet" type="text/css" href="style1.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" type="text/css" href="style1.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
  <script src='https://www.google.com/recaptcha/api.js'></script>
 
@@ -18,7 +19,7 @@ include("functions.php");?>
 <title>Register</title>
 </head>
 <body>
-<section class="hero has-background-white-bis is-medium">
+<section class="hero has-background-white-bis is-large">
     <div class="hero-body">
 
   <div class="registration has-background-white">
