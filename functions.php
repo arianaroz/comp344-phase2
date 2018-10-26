@@ -1,6 +1,7 @@
 <?php
     include("db.php");
 
+
 // Regular Expression for form validation
 function name_validation($text){
   $re = "/^[A-Za-z\s\']+$/";
@@ -72,12 +73,14 @@ function password_validation($text){
 }
 
 function passwordCheck($pass1, $pass2){
+    global $error;
     if ($pass1 != $pass2){
-        echo "
+        $error = "Passwords do not match.";
+        /*echo "
         <div class='regi_error'>
         Passwords do not match.
         </div>
-        ";
+        ";*/
         return false;
     }
     else{

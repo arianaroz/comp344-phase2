@@ -1,14 +1,37 @@
 <?php
+require_once("./common_db.php");
+require_once("SessionManager.php");
+// Where to go next
+if (isset($_GET['continue'])) {
+	$continue = $_GET['continue'];
+}
+else {
+	if (isset($_POST['continue'])) {
+		$continue = $_POST['continue'];
+	}
+	else {
+		$continue = "index.php";
+	}
+}
 
-include("db.php");
-    include("login.php");
-    $username = $_POST[‘username’];
-    $password = $_POST[‘password’];
+if(isset($_POST['stage']) && ($_POST['stage'] == 'process')) {
+	process_form();
+} else {
+	print_form($continue, "Please enter your account details");
+}
+function process_form() {
+	global $continue;
+	if(login($_POST['username'], $_POST['password'])) {
+		header("Location: $continue");
+	}
+	else {
+		print_form($continue, "Invalid credentials");
+	}
+}
 
-    if(isset($_POST['login'])){
-        login($username, $password);
-    }
-
+function print_form($continue, $error) {
+	global $store_name, $slogan;
+	$title = $store_name . " - " . "Shopper Login";
 
 
 ?>
@@ -35,7 +58,9 @@ include("db.php");
               <div class="card-content">
 
             <div class="field ">
-            <form>
+            <form  action="signin.php" method="POST" onsubmit="return validateFormOnSubmit(this)">
+                <input type="hidden" name = "continue" value = "<?= $continue ?>" />
+                <input type="hidden" name = "stage" value = "process" />
                 <p class="control has-icons-left ">
                     <input class="input" type="text" name="username" placeholder="Username" required>
                     <span class="icon is-small is-left"> <i class="fas fa-user"></i></span>
@@ -49,9 +74,7 @@ include("db.php");
             </div>
 <div class="field">
   <p class="control">
-    <button class="button is-fullwidth has-background-primary" onclick="return logValidate();" type="submit" name="login">
-      Login
-    </button>
+    <button class="button is-fullwidth has-background-primary" type="submit" name="login">Login</button>
   </p>
 </div>
 </form>
@@ -71,6 +94,6 @@ include("db.php");
 <div class="footer">
 <?php include("footer.php"); ?>
 </div>
-
 </body>
 </html>
+<?php } ?>

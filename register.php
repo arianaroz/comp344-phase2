@@ -1,11 +1,14 @@
-<?php session_start(); ?>
-<?php if(isset($_SESSION['email'])){
+<?php session_start();
+
+include("db.php");
+include("functions.php");
+
+ if(isset($_SESSION['email'])){
     header("Location: /index.php");
     exit;
+
 }
 ?>
-<?php include("db.php");
-include("functions.php");?>
 
 <html>
 <head>
@@ -26,7 +29,7 @@ include("functions.php");?>
     <div class="columns is-centered">
         <div class="card-content">
             <h5 class="title is-5">Create an account</h5>
-    <div id="rerr" class="regi_error"></div>
+    <div class="regi_error"> <?php echo $error ?></div>
     <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
 
@@ -70,9 +73,11 @@ include("functions.php");?>
 </html>
 
 <?php
+    global $error;
   if (isset($_POST['reg_button'])){
 
     function post_captcha($user_response) {
+
         $fields_string = '';
         $fields = array(
             'secret' => '6LenP3UUAAAAAMd4vRvG00HfCIuToEXz-Kb2wMib',
@@ -118,6 +123,7 @@ include("functions.php");?>
         }
         elseif (password_validation($_password)==false) {
           return;
+
         }
         elseif (passwordCheck($_password, $_confirmPass)== false){
             return;

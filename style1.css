@@ -7,46 +7,12 @@ padding:0;
 /*background-color: hsl(0, 0%, 98%);*/
 }
 
-.wrapper{
-    height: 100%;
-}
-
-
-.loginContainer{
-    margin: auto;
-    margin-top: 80px;
-    width: 420px;
-    height: 380px;
-    padding-top: 5.5%;
-    font-size: 12px;
-    text-align: center;
-    border: 1px solid black;
-}
-
-
-.login-form{
-    text-align: left;
-    width: 270px;
-    padding: inherit;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid black;
-    background-color: hsl(0, 0%, 98%);
-}
 
 #inputPassword{
     margin-top: 2px;
 
 }
-label {
-    width: 100px;
-    margin: 5px 1px;
-    height: 5px;
-    display: inline-block;
-}
+
 
 .heading_regi{
     margin: auto;
@@ -69,45 +35,11 @@ label {
 
 }
 
-#submit{
-    width: 300px;
-    padding: 10px 10px;
-    margin-top: 10px;
-    font-size: 12px;
-    cursor: pointer;
-    border: 1px solid #c4586d;
-    border-radius: 2px;
-    background-color: rgba(237, 52, 70, 0.7);
-}
-/*
-.button {
-font-size: 10px;
-cursor: pointer;
-}
-.button:hover{
-    opacity: 0.9;
-
-}
-*/
 .signin{
     margin: auto;
     border-radius: 1px solid red;
     margin-bottom: 200px;
 
-}
-#login-btn{
-    margin-top: 10px;
-    font-size: 12px;
-    width: 270px;
-    height: 34px;
-    cursor: pointer;
-    border: 1px solid #c4586d;
-    border-radius: 1px;
-    background-color: rgba(237, 52, 70, 0.7);
-
-}
-#login-btn:hover{
-    opacity: 0.9;
 }
 a:link{
     color: black;
@@ -170,8 +102,6 @@ a:visited {
 
 /*** bulma css elements ****/
 
-
-
 .logincontainer{
     width: 500px;
     padding: 6em;
@@ -191,6 +121,6 @@ a:visited {
 
 }
 
-.error{
-    z-index: 10;
+.regi_error{
+    border: red 1px solid;
 }

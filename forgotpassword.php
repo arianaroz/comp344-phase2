@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+include("common_db.php");
 $error= "";
 
 
@@ -57,15 +57,6 @@ $error= "";
 </div>
     </div>
 </section>
-
-<?php
-
-if(isset($_POST['submit'])){
-    echo"hello";
-}
-
-?>
-
 
 
 

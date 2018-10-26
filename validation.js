@@ -24,6 +24,7 @@ function validate(){
   // Password validation
   re = /^[A-Za-z]+[0-9]+[A-Za-z]*[0-9]*$/;
   text = document.getElementById('password').value;
+  text2 = document.getElementById('confirmPassword').value;
 
   if (text.length<6 || text.length>10){
     window.alert('Please enter a valid password');
@@ -33,6 +34,12 @@ function validate(){
     window.alert('Please enter valid a passowrd');
     return false;
   }
+//password match check
+else if (text != text2){
+    window.alert("Passwords do not match");
+    return false;
+}
+
 
   // Street No validation
   re = /^\d+\/?\d+?$/;
