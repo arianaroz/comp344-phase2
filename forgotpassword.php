@@ -95,8 +95,8 @@ $error= "";
     mysqli_query($conn, $query_dlt);
 
     $token = md5(uniqid(rand(), true));
-    //$nextDay = time() + (1 * 24 * 60 * 60);
-    $nextDay = time() + (120);
+    $nextDay = time() + (1 * 24 * 60 * 60);
+    //$nextDay = time() + (120);
     $exp_time = date('Y-m-d H:i:s', $nextDay);
     $query = "INSERT INTO pass_session VALUES ('$shopper_id', '$token', '$exp_time')";
     if (mysqli_query($conn, $query)) {
