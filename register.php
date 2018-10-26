@@ -6,7 +6,7 @@ include("functions.php");
  if(isset($_SESSION['email'])){
     header("Location: /index.php");
     exit;
-
+global $error;
 }
 ?>
 
@@ -29,7 +29,7 @@ include("functions.php");
     <div class="columns is-centered">
         <div class="card-content">
             <h5 class="title is-5">Create an account</h5>
-    <div class="regi_error"> <?php echo $error ?></div>
+    <div class="regi_error"> </div>
     <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
 

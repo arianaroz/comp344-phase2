@@ -215,7 +215,7 @@ function logValidate(){
     return false;
   }
   else if (xre.test(xtext)==false){
-    window.alert('Please enter valid a passowrd');
+    window.alert('Please enter valid a password');
     return false;
   }
 }

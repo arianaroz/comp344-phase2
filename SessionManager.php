@@ -1,4 +1,5 @@
 <?php
+require_once("common_db.php");
 function store_get_shopper_id() {
 	global $store_session_con;
 
@@ -6,7 +7,9 @@ function store_get_shopper_id() {
 		$store_session_con = db_connect();
 	}
 
-	$query  = "SELECT Shopper_id FROM Session WHERE id = ?";
+	$query  = "SELECT Shopper_id FROM Session WHERE id = ? AND Shopper_id IS NOT NULL";
+
+
 
 	try {
 		$statement = $dbo->prepare($query);
@@ -123,7 +126,7 @@ function store_session_gc($gc_maxlife){
 
 }
 
-// ini_set("session.save_handler", "user");
+//ini_set("session.save_handler", "user");
 
 session_set_save_handler(
 	"store_session_open",

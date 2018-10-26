@@ -412,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `pass_session` (
 	PRIMARY KEY (`user_id`),
 	CONSTRAINT `session_order`
 		FOREIGN KEY(`user_id`)
-		REFERENCES `Order` (`Order_id`)
+		REFERENCES `Shopper` (`shopper_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `Cart` (
