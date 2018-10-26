@@ -13,7 +13,7 @@ function validate(){
   }
 
   // Email validation
-  re = /^[\w]+\.[\w]+-?[\w]+@(?:students.)?mq.edu.au$/;
+  re = /^[a-zA-Z0-9_\.-]+\w@\w+\.\w+[a-zA-Z0-9_\.-]*$/;
   text = document.getElementById('email').value;
 
   if (re.test(text)==false){
@@ -221,7 +221,7 @@ function logValidate(){
 }
 
 function emailValidate(){
-    re = /^[\w]+\.[\w]+-?[\w]/;
+    re = /^[a-zA-Z0-9_\.-]+\w*@\w+\.\w+[a-zA-Z0-9_\.-]*$/;
     text = document.getElementById('email').value;
     if (re.test(text)==false){
     alert('Please provide a valid email address');

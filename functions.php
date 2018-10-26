@@ -29,7 +29,7 @@ function name_validation($text){
 }
 
 function email_validation($text){
-  $re = "/^[\w]+\.[\w]+-?[\w]+@(?:students.)?mq.edu.au$/";
+  $re = "/^[a-zA-Z0-9_\.-]+\w@\w+\.\w+[a-zA-Z0-9_\.-]*$/";
 
   if (preg_match($re, $text)==false){
     echo "

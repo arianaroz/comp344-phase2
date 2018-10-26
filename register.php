@@ -118,16 +118,16 @@ include("functions.php");
         // if (name_validation($_username)==false){
         //   return;
         // }
-        if (email_validation($_email)==false) {
-          return;
-        }
-        elseif (password_validation($_password)==false) {
-          return;
-
-        }
-        elseif (passwordCheck($_password, $_confirmPass)== false){
-            return;
-        }
+        // if (email_validation($_email)==false) {
+        //   return;
+        // }
+        // elseif (password_validation($_password)==false) {
+        //   return;
+        //
+        // }
+        // elseif (passwordCheck($_password, $_confirmPass)== false){
+        //     return;
+        // }
 
         $hashed_password = password_hash($_password, PASSWORD_DEFAULT);
 
@@ -137,7 +137,7 @@ include("functions.php");
         if (mysqli_num_rows($result_chk) > 0) {
           // output data of each row
           while($xrow = mysqli_fetch_assoc($result_chk)) {
-            $sql_email = $xrow["email"];
+            $sql_email = $xrow["sh_email"];
           }
           if ($sql_email==$_email){
             echo "
