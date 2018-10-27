@@ -170,8 +170,8 @@ include("functions.php");
         VALUES (Null, ?, ?, ?, ?, 'x', '1', Null, Null)");
 
 
-        $query = "INSERT INTO Shopper (sh_username, sh_password, sh_email, sh_phone, sh_type, sh_shopgrp, sh_field1, sh_field2)
-        VALUES ($_username', '$hashed_password', '$_email', '$_phone', 'x', '1', 'a', 'b')";
+        // $query = "INSERT INTO Shopper (sh_username, sh_password, sh_email, sh_phone, sh_type, sh_shopgrp, sh_field1, sh_field2)
+        // VALUES ('$_username', '$hashed_password', '$_email', '$_phone', 'x', '1', 'a', 'b')";
 
 
         if ($stmt->execute(array($_username, $hashed_password, $_email, $_phone))) {
