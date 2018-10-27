@@ -63,6 +63,7 @@ if (isset($_GET['token'])){
 ?>
 
 <?php
+$db = db_connect();
 if (isset($_POST['reset'])){
 
   $_password = $_POST['password'];
@@ -87,58 +88,34 @@ if (isset($_POST['reset'])){
 
   $hashed_password = password_hash($_password, PASSWORD_DEFAULT);
 
-  $query_chk = "SELECT user_id, timestamp FROM pass_session WHERE token='$token'";
-  $result_chk = mysqli_query($conn, $query_chk);
+  $stmt = $db->prepare("SELECT user_id, timestamp FROM pass_session WHERE token= ?");
+  $stmt->execute(array($token));
+  $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if (mysqli_num_rows($result_chk) > 0) {
-    // output data of each row
-    while($xrow = mysqli_fetch_assoc($result_chk)) {
-      $user_id = $xrow["user_id"];
-      $time_stamp = $xrow["timestamp"];
-    }
-  }
 
-  // if ($sql_email==$_email){
-  //   echo "
-  //   <div class='regi_error'>
-  //   Email address is already registered.
-  //   </div>
-  //   ";
-  //   return ;
-  // }
-
-  $query_chk = "SELECT user_id, timestamp FROM pass_session WHERE token='$token'";
-  $result_chk = mysqli_query($conn, $query_chk);
-
-  if (mysqli_num_rows($result_chk) > 0) {
-    // output data of each row
-    while($xrow = mysqli_fetch_assoc($result_chk)) {
-      $user_id = $xrow["user_id"];
-      $exp_time = $xrow["timestamp"];
-    }
+  if (!empty($res)) {
+    $user_id = $res["user_id"];
+    $exp_time = $res["timestamp"];
   }
 
   $now_time = date('Y-m-d H:i:s');
   if($now_time>$exp_time){
     echo "Sorry your token has been expired.";
-    $query_ = "DELETE FROM pass_session WHERE token='$token'";
-    mysqli_query($conn, $query_);
+    $stmt = $db->prepare("DELETE FROM pass_session WHERE token= ?");
+    $stmt->execute(array($token));
     return ;
   }
 
+  $stmt = $db->prepare("UPDATE Shopper SET sh_password= ?");
 
 
-  $query = "UPDATE Shopper SET sh_password='$_password'";
 
-  if (mysqli_query($conn, $query)) {
+  if ($stmt->execute(array($hashed_password))) {
+    $stmt = $db->prepare("DELETE FROM pass_session WHERE token='$token'");
+    $stmt->execute(array($token));
 
-    $query_ = "DELETE FROM pass_session WHERE token='$token'";
-    mysqli_query($conn, $query_);
+    echo "<script>window.location = '/index.php'</script>";
 
-    //echo "<script>window.location = '/index.php'</script>";
-
-  } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
   }
 
   //mysqli_close($conn);

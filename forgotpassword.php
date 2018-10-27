@@ -96,7 +96,7 @@ require_once("common_db.php");
     $token = md5(uniqid(rand(), true));
     $nextDay = time() + (1 * 24 * 60 * 60);
     //$nextDay = time() + (120);
-    $exp_time = date('Y-m-d H:i:s', $nextDay);
+    $exp_time = Date('Y-m-d H:i:s', $nextDay);
 
     $stmt = $db->prepare("INSERT INTO pass_session VALUES (?, ?, ?)");
 
