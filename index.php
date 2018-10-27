@@ -1,7 +1,8 @@
 <?php session_start(); ?>
 <?php
-    include("db.php");
-include("functions.php"); ?>
+    //include("db.php");
+    include("common_db.php");
+    include("functions.php"); ?>
 
 <html>
 <head>

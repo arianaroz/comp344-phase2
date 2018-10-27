@@ -1,5 +1,6 @@
 <?php
-    include("db.php");
+//include("common_db.php");
+//include("db.php");
 
 
 // Regular Expression for form validation

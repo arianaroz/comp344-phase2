@@ -1,6 +1,7 @@
 <?php session_start();
 
-include("db.php");
+//include("db.php");
+include("common_db.php");
 include("functions.php");
 
  if(isset($_SESSION['email'])){
@@ -73,6 +74,7 @@ global $error;
 </html>
 
 <?php
+  $db = db_connect();
     global $error;
   if (isset($_POST['reg_button'])){
 
@@ -131,14 +133,13 @@ global $error;
 
         $hashed_password = password_hash($_password, PASSWORD_DEFAULT);
 
-        $query_chk = "SELECT sh_email FROM Shopper WHERE sh_email='$_email'";
-        $result_chk = mysqli_query($conn, $query_chk);
+        $stmt = $db->prepare("SELECT sh_email FROM Shopper WHERE sh_email= ?");
+        $stmt->execute(array($_email));
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (mysqli_num_rows($result_chk) > 0) {
-          // output data of each row
-          while($xrow = mysqli_fetch_assoc($result_chk)) {
-            $sql_email = $xrow["sh_email"];
-          }
+
+        if (sizeof($res) > 0) {
+          $sql_email = $res["sh_email"];
           if ($sql_email==$_email){
             echo "
             <div class='regi_error'>
@@ -149,14 +150,13 @@ global $error;
           }
         }
 
-        $query_chk = "SELECT sh_username FROM Shopper WHERE sh_username='$_username'";
-        $result_chk = mysqli_query($conn, $query_chk);
+        $stmt = $db->prepare("SELECT sh_username FROM Shopper WHERE sh_username= ?");
+        $stmt->execute(array($_username));
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (mysqli_num_rows($result_chk) > 0) {
-          // output data of each row
-          while($xrow = mysqli_fetch_assoc($result_chk)) {
-            $sql_username = $xrow["sh_username"];
-          }
+        if (sizeof($res) > 0) {
+          $sql_username = $res["sh_username"];
+
           if ($sql_username==$_username){
             echo "
             <div class='regi_error'>
@@ -167,12 +167,15 @@ global $error;
           }
         }
 
+        $stmt = $db->prepare("INSERT INTO Shopper (shopper_id, sh_username, sh_password, sh_email, sh_phone, sh_type, sh_shopgrp, sh_field1, sh_field2)
+        VALUES (Null, ?, ?, ?, ?, 'x', '1', Null, Null)");
 
-        $query = "INSERT INTO Shopper (shopper_id, sh_username, sh_password, sh_email, sh_phone, sh_type, sh_shopgrp, sh_field1, sh_field2)
-        VALUES ('1', '$_username', '$hashed_password', '$_email', '$_phone', 'x', '1', 'a', 'b')";
+
+        // $query = "INSERT INTO Shopper (shopper_id, sh_username, sh_password, sh_email, sh_phone, sh_type, sh_shopgrp, sh_field1, sh_field2)
+        // VALUES ('1', '$_username', '$hashed_password', '$_email', '$_phone', 'x', '1', 'a', 'b')";
 
 
-        if (mysqli_query($conn, $query)) {
+        if ($stmt->execute(array($_username, $hashed_password, $_email, $_phone))) {
           $_SESSION['email'] = $_POST['email'];
 
           //EMAIL CONFIRMATION
@@ -181,11 +184,8 @@ global $error;
 
           echo "<script>window.location = '/index.php'</script>";
 
-        } else {
-          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
 
-        //mysqli_close($conn);
         }
     }
 
