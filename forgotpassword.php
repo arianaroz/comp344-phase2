@@ -1,21 +1,15 @@
 <?php
-include("db.php");
-$error= "";
-
-
-
-
+require_once("common_db.php");
 ?>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Forgot Password</title>
-  <link rel="stylesheet" type="text/css" href="style1.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-
-  <script type="text/javascript" src="validation.js" ></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forgot Password</title>
+<link rel="stylesheet" type="text/css" href="style1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<script type="text/javascript" src="validation.js" ></script>
 </head>
 
 
@@ -29,7 +23,7 @@ $error= "";
         <div id="s" >
           <div class="is-size-7"> Please enter your email address.</div>
           <div class="is-size-7"> We will send you instructions to reset your password. </div>
-          <div class="error"><?php echo $error;?></div>
+          <div class="regi_errror"></div>
           <div class="columns is-centered">
             <div class="card-content">
               <div class="field ">
@@ -69,9 +63,12 @@ $error= "";
 
 
 <?php
+//User submits email in form
   if (isset($_POST['submit'])){
     $_email = $_POST['email'];
     $query_chk = "SELECT sh_email, shopper_id FROM Shopper WHERE sh_email='$_email'";
+//db connection
+    $conn = db_connect();
     $result_chk = mysqli_query($conn, $query_chk);
 
     if (mysqli_num_rows($result_chk) > 0) {
@@ -81,6 +78,7 @@ $error= "";
         $shopper_id = $xrow["shopper_id"];
       }
     }
+    //Users email not in the database
     else {
       echo "
       <div class='regi_error'>

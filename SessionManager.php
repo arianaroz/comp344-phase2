@@ -1,14 +1,15 @@
 <?php
 require_once("common_db.php");
+
 function store_get_shopper_id() {
 	global $store_session_con;
+	$dbo = db_connect();
 
 	if (!isset($store_session_con)) {
 		$store_session_con = db_connect();
 	}
 
 	$query  = "SELECT Shopper_id FROM Session WHERE id = ? AND Shopper_id IS NOT NULL";
-
 
 
 	try {
