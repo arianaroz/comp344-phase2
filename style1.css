@@ -149,3 +149,13 @@ a:visited {
 #country{
     width: 290px;
 }
+
+.reset{
+    margin: auto;
+    text-align: center;
+    border: 1px solid #bfc0c1;
+
+    padding: 5em;
+    height: 380px;
+    width: 500px;
+}

@@ -22,10 +22,10 @@ include("functions.php");
   <title>Reset Password</title>
 </head>
 <body>
-  <section class="hero has-background-white-bis is-large">
+  <section class="hero has-background-white-bis is-medium">
     <div class="hero-body">
 
-      <div class="registration has-background-white">
+      <div class="reset has-background-white">
         <div class="columns is-centered">
           <div class="card-content">
             <h5 class="title is-5">Reset Password</h5>
