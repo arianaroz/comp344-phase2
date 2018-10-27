@@ -1,7 +1,6 @@
 <?php session_start();
 
-//include("db.php");
-include("common_db.php");
+require_once("common_db.php");
 include("functions.php");
 
  if(isset($_SESSION['email'])){
@@ -171,8 +170,8 @@ global $error;
         VALUES (Null, ?, ?, ?, ?, 'x', '1', Null, Null)");
 
 
-        // $query = "INSERT INTO Shopper (shopper_id, sh_username, sh_password, sh_email, sh_phone, sh_type, sh_shopgrp, sh_field1, sh_field2)
-        // VALUES ('1', '$_username', '$hashed_password', '$_email', '$_phone', 'x', '1', 'a', 'b')";
+        $query = "INSERT INTO Shopper (sh_username, sh_password, sh_email, sh_phone, sh_type, sh_shopgrp, sh_field1, sh_field2)
+        VALUES ($_username', '$hashed_password', '$_email', '$_phone', 'x', '1', 'a', 'b')";
 
 
         if ($stmt->execute(array($_username, $hashed_password, $_email, $_phone))) {
@@ -182,7 +181,7 @@ global $error;
           // $msg = "Thank you for your registration. Your user name is: " . $_email . ". From: mohammed.tanvir-hossain@students.mq.edu.au";
           // mail($_email,'Registration Successful',$msg,'From: mohammed.tanvir-hossain@students.mq.edu.au','-f mohammed.tanvir-hossain@students.mq.edu.au');
 
-          echo "<script>window.location = '/index.php'</script>";
+          echo "<script>window.location = '/regSuccess.php'</script>";
 
         }
 

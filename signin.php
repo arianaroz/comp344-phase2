@@ -1,38 +1,21 @@
 <?php
 require_once("common_db.php");
-require_once("SessionManager.php");
+require("SessionManager.php");
 require_once("config.php");
-// Where to go next
-if (isset($_GET['continue'])) {
-	$continue = $_GET['continue'];
-}
-else {
-	if (isset($_POST['continue'])) {
-		$continue = $_POST['continue'];
-	}
-	else {
-		$continue = "index.php";
-	}
-}
+$error = "";
 
-if(isset($_POST['stage']) && ($_POST['stage'] == 'process')) {
-	process_form();
-} else {
-	print_form($continue, "Please enter your account details");
-}
-function process_form() {
-	global $continue;
-	if(login($_POST['username'], $_POST['password'])) {
-		header("Location: $continue");
-	}
-	else {
-		print_form($continue, "Invalid credentials");
-	}
-}
 
-function print_form($continue, $error) {
-	global $store_name, $slogan;
-	$title = $store_name . " - " . "Shopper Login";
+if(isset($_POST['login'])) {
+
+	if(login($_POST['username'], $_POST['password'])){
+
+		header('Location: index.php');
+		exit();
+	}
+}
+	else {
+		$error= "Invalid credentials";
+	}
 
 
 ?>
@@ -59,9 +42,9 @@ function print_form($continue, $error) {
               <div class="card-content">
 
             <div class="field ">
-            <form  action="signin.php" method="POST" onsubmit="return validateFormOnSubmit(this)">
-                <input type="hidden" name = "continue" value = "<?= $continue ?>" />
-                <input type="hidden" name = "stage" value = "process" />
+            <form id="login"method="POST" onsubmit="return validateFormOnSubmit(this)">
+				<input type="hidden" name = "stage" value = "process" />
+
                 <p class="control has-icons-left ">
                     <input class="input" type="text" name="username" placeholder="Username" required>
                     <span class="icon is-small is-left"> <i class="fas fa-user"></i></span>
@@ -97,4 +80,3 @@ function print_form($continue, $error) {
 </div>
 </body>
 </html>
-<?php } ?>

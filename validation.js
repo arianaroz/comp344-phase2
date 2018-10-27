@@ -13,12 +13,12 @@ function validate(){
   }
 
   // Email validation
-  re = /^[a-zA-Z0-9_\.-]+\w@\w+\.\w+[a-zA-Z0-9_\.-]*$/;
-  text = document.getElementById('email').value;
+  re = /^[a-zA-Z0-9_\.-]+\w*@\w+\.\w+[a-zA-Z0-9_\.-]*$/;
 
+  text = document.getElementById('email').value;
   if (re.test(text)==false){
-    window.alert('Please enter a valid MQ email address');
-    return false;
+  alert('Please provide a valid email address');
+      return false;
   }
 
   // Password validation
@@ -26,12 +26,12 @@ function validate(){
   text = document.getElementById('password').value;
   text2 = document.getElementById('confirmPassword').value;
 
-  if (text.length<6 || text.length>10){
-    window.alert('Please enter a valid password');
+  if (text.length<8){
+    window.alert('Password must be at least 8 characters');
     return false;
   }
   else if (re.test(text)==false){
-    window.alert('Please enter valid a passowrd');
+    window.alert('Password must contain at least one number.');
     return false;
   }
 //password match check
@@ -179,31 +179,6 @@ else if (text != text2){
       window.alert('Sorry, your Credit Card is expired');
       return false;
     }
-  }
-
-  // Card CVV validation
-  re = /^\d+$/;
-  text = document.getElementById('card_cvv').value;
-
-  if (text.length != 3){
-    window.alert('Please enter a valid CVV');
-    return false;
-  }
-  else if (re.test(text)==false){
-    window.alert('Please enter a valid CVV');
-    return false;
-  }
-
-}
-
-function logValidate(){
-  // Email validation
-  var xre = /^[\w]+\.[\w]+-?[\w]+@(?:students.)?mq.edu.au$/;
-  var xtext = document.getElementById('l_email').value;
-
-  if (xre.test(xtext)==false){
-    window.alert('Please enter a valid MQ email address');
-    return false;
   }
 
   // Password validation
