@@ -137,7 +137,7 @@ include("functions.php");
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-        if (sizeof($res) > 0) {
+        if (!empty($res)) {
           $sql_email = $res["sh_email"];
           if ($sql_email==$_email){
             echo "
@@ -153,7 +153,7 @@ include("functions.php");
         $stmt->execute(array($_username));
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (sizeof($res) > 0) {
+        if (!empty($res)) {
           $sql_username = $res["sh_username"];
 
           if ($sql_username==$_username){

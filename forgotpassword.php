@@ -63,20 +63,20 @@ require_once("common_db.php");
 
 
 <?php
-//User submits email in form
+  //User submits email in form
   if (isset($_POST['submit'])){
     $_email = $_POST['email'];
-    $query_chk = "SELECT sh_email, shopper_id FROM Shopper WHERE sh_email='$_email'";
-//db connection
-    $conn = db_connect();
-    $result_chk = mysqli_query($conn, $query_chk);
+    //db connection
+    $db = db_connect();
 
-    if (mysqli_num_rows($result_chk) > 0) {
-      // output data of each row
-      while($xrow = mysqli_fetch_assoc($result_chk)) {
-        $sql_email = $xrow["sh_email"];
-        $shopper_id = $xrow["shopper_id"];
-      }
+    $stmt = $db->prepare("SELECT sh_email, shopper_id FROM Shopper WHERE sh_email= ?");
+    $stmt->execute(array($_email));
+    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+    if (!empty($res)) {
+      $sql_email = $res["sh_email"];
+      $shopper_id = $res["shopper_id"];
     }
     //Users email not in the database
     else {
@@ -89,24 +89,29 @@ require_once("common_db.php");
     }
 
     // Delete the row if token already exists for the specefic user_id
-    $query_dlt = "DELETE FROM pass_session WHERE user_id='$shopper_id'";
-    mysqli_query($conn, $query_dlt);
+    $stmt = $db->prepare("DELETE FROM pass_session WHERE user_id= ?");
+    $stmt->execute(array($shopper_id));
 
+    //Random string generator for generating token
     $token = md5(uniqid(rand(), true));
     $nextDay = time() + (1 * 24 * 60 * 60);
     //$nextDay = time() + (120);
     $exp_time = date('Y-m-d H:i:s', $nextDay);
-    $query = "INSERT INTO pass_session VALUES ('$shopper_id', '$token', '$exp_time')";
-    if (mysqli_query($conn, $query)) {
+
+    $stmt = $db->prepare("INSERT INTO pass_session VALUES (?, ?, ?)");
+
+    if ($stmt->execute(array($shopper_id, $token, $exp_time))) {
 
       //EMAIL CONFIRMATION
       // $msg = "Thank you for your registration. Your user name is: " . $_email . ". From: mohammed.tanvir-hossain@students.mq.edu.au";
       // mail($_email,'Registration Successful',$msg,'From: mohammed.tanvir-hossain@students.mq.edu.au','-f mohammed.tanvir-hossain@students.mq.edu.au');
 
-      echo "<script>window.location = '/index.php'</script>";
+      //echo "<script>window.location = '/index.php'</script>";
+      $host = $_SERVER['HTTP_HOST'];
+      $url = $host . '/resetpassword.php?token=' . $token;
 
-    } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      echo "<script>alert('$url');</script>";
+
     }
 
   }
