@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
-    //include("db.php");
-    include("common_db.php");
-    include("functions.php"); ?>
-=======
+
+
 require_once("common_db.php");
 require_once("SessionManager.php");
 
@@ -23,7 +20,7 @@ if(isset($_POST['logout'])){
     logout();
 }
 ?>
->>>>>>> 53c3f30bba497642ced1065b169b7f881fe13954
+
 
 <html>
 <head>

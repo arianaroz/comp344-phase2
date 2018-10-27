@@ -3,11 +3,11 @@
 require_once("common_db.php");
 include("functions.php");
 
- if(isset($_SESSION['email'])){
-    header("Location: /index.php");
-    exit;
-global $error;
-}
+//  if(isset($_SESSION['email'])){
+//     header("Location: /index.php");
+//     exit;
+// global $error;
+// }
 ?>
 
 <html>
