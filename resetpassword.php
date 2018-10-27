@@ -29,7 +29,7 @@ include("functions.php");
         <div class="columns is-centered">
           <div class="card-content">
             <h5 class="title is-5">Reset Password</h5>
-            <div class="regi_error"> <?php echo $error ?></div>
+            <!-- <div class="regi_error"> <?php echo $error ?></div> -->
             <form class="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
               <div class="field">
                 <input class="input" id ="password" type="password" name="password" placeholder="New Password" required><br/>
