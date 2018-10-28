@@ -2,8 +2,8 @@
 require_once("common_db.php");
 require("SessionManager.php");
 require_once("config.php");
-$error = "";
-
+?>
+<?php
 
 if(isset($_POST['login'])) {
 
@@ -12,13 +12,12 @@ if(isset($_POST['login'])) {
 		header('Location: index.php');
 		exit();
 	}
-}
+
 	else {
-		$error= "Invalid credentials";
+		echo "Invalid credentials";
 	}
 
-
-?>
+} ?>
 
 <!DOCTYPE html>
 <html>

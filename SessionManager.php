@@ -169,12 +169,12 @@ function login($username, $password) {
 
 		$sessid = session_id();
 		$dbo = db_connect();
-
-		$query  = "INSERT INTO Session (id, Shopper_id) VALUES (?,?)";
+		$t = Date('Y-m-d H:i:s');
+		$query  = "INSERT INTO Session (id, Shopper_id, time) VALUES (?,?,?)";
 
 		try {
 			$statement = $dbo->prepare($query);
-			$success = $statement->execute(array($sessid, $shopper_id));
+			$success = $statement->execute(array($sessid, $shopper_id, $t));
 		}
 		catch (PDOException $ex) {
 			error_log($ex->getMessage());

@@ -92,7 +92,6 @@ if (isset($_POST['reset'])){
   $stmt->execute(array($token));
   $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
   if (!empty($res)) {
     $user_id = $res["user_id"];
     $exp_time = $res["timestamp"];
@@ -106,15 +105,15 @@ if (isset($_POST['reset'])){
     return ;
   }
 
-  $stmt = $db->prepare("UPDATE Shopper SET sh_password= ?");
+  $stmt = $db->prepare("UPDATE Shopper SET sh_password= ? WHERE shopper_id= ?");
 
 
 
-  if ($stmt->execute(array($hashed_password))) {
-    $stmt = $db->prepare("DELETE FROM pass_session WHERE token='$token'");
+  if ($stmt->execute(array($hashed_password, $user_id))) {
+    $stmt = $db->prepare("DELETE FROM pass_session WHERE token= ?");
     $stmt->execute(array($token));
 
-    echo "<script>window.location = '/index.php'</script>";
+    //echo "<script>window.location = '/index.php'</script>";
 
   }
 

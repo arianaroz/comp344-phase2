@@ -1,26 +1,23 @@
 <?php
-
-
 require_once("common_db.php");
 require_once("SessionManager.php");
-
 include("functions.php");
 include("config.php");
+?>
+<?php
+if(isset($_POST['logout'])){
+    logout();
+}
+?>
 
-
+<?php
 if(store_get_shopper_id() > 0){
     echo "you are logged in";
 }
 else {
     echo " you are not logged in";
 }
-
-
-if(isset($_POST['logout'])){
-    logout();
-}
 ?>
-
 
 <html>
 <head>
@@ -32,6 +29,7 @@ if(isset($_POST['logout'])){
 </head>
 
 <body>
+
     <section class="hero has-background-white-bis is-large">
         <div class="hero-body">
             <div class="container">
