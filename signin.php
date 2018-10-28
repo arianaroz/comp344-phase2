@@ -4,7 +4,7 @@ require("SessionManager.php");
 require_once("config.php");
 ?>
 <?php
-
+$error = '';
 if(isset($_POST['login'])) {
 
 	if(login($_POST['username'], $_POST['password'])){
@@ -14,7 +14,7 @@ if(isset($_POST['login'])) {
 	}
 
 	else {
-		echo "Invalid credentials";
+		$error= "Invalid credentials";
 	}
 
 } ?>
