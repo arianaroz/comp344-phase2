@@ -16,6 +16,7 @@ require_once("config.php");
 </head>
 
 <body>
+<?php include("header.php"); ?>
 <section class="hero has-background-white-bis is-medium">
     <div class="hero-body">
         <div class="regSuccess has-background-white">

@@ -2,9 +2,20 @@
 require_once("common_db.php");
 require("SessionManager.php");
 require_once("config.php");
+
+
+$error = "";
+
+if(store_get_shopper_id() > 0){
+
+    header('Location: account.php');
+	exit();
+}
+
 ?>
 <?php
 $error = '';
+
 if(isset($_POST['login'])) {
 
 	if(login($_POST['username'], $_POST['password'])){
@@ -17,7 +28,9 @@ if(isset($_POST['login'])) {
 		$error= "Invalid credentials";
 	}
 
-} ?>
+}
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -28,15 +41,16 @@ if(isset($_POST['login'])) {
 <link rel="stylesheet" type="text/css" href="style1.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-
 </head>
 
 <body>
+<?php include("header.php"); ?>
 <section class="hero has-background-white-bis is-medium">
+
     <div class="hero-body">
         <div class="logincontainer has-background-white">
             <h5 class="title is-5">Sign in</h5>
-            <div class="error"><?php echo $error;?></div>
+            <div class="error"><?php echo $error ?></div>
          <div class="columns is-centered">
               <div class="card-content">
 

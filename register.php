@@ -22,7 +22,8 @@ include("functions.php");
 <title>Register</title>
 </head>
 <body>
-<section class="hero has-background-white-bis is-large">
+<?php include("header.php"); ?>
+<section class="hero has-background-white-bis is-medium">
     <div class="hero-body">
 
   <div class="registration has-background-white">

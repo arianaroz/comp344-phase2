@@ -12,7 +12,7 @@ if(isset($_POST['logout'])){
 
 <?php
 if(store_get_shopper_id() > 0){
-    echo "you are logged in";
+    //shopper is logged in
 }
 else {
     echo " you are not logged in";
@@ -29,6 +29,8 @@ else {
 </head>
 
 <body>
+
+    <?php include("header.php"); ?>
 
     <section class="hero has-background-white-bis is-large">
         <div class="hero-body">
