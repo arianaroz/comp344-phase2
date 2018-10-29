@@ -20,6 +20,16 @@ if(store_get_shopper_id() > 0){
         $user= $row['sh_username'];
     }
 
+    $stmt = $db->prepare("SELECT sh_username, sh_email, sh_phone FROM Shopper WHERE shopper_id = ?");
+    $stmt->execute(array($sid));
+    $res= $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($res as $row){
+        $username= $row['sh_username'];
+        $email=$row['sh_email'];
+        $phone=$row['sh_phone'];
+    }
+
+
 }
 else {
     header('Location: signin.php');
@@ -51,8 +61,17 @@ if(isset($_POST['logout'])){
 <section class="hero has-background-white-bis is-medium">
 <div class="level-right" id="user"> Welcome <?php echo $user ?> </div>
 <?php include("menu.php") ?>
+<div class="hero-body">
 
-  <div class="hero-body">
+    <div class="details">
+      <div> Username: <?php echo $username ?> </div>
+  </br>
+        <div>Email:  <?php echo $email ?></div>
+    </br>
+        <div>Phone:  <?php echo $phone ?></div>
+    </br>
+
+    </div>
 </div>
 </section>
 <div class="footer">

@@ -25,6 +25,10 @@ else {
     exit();
 }
 
+if(isset($_POST['submit'])){
+    
+}
+
 
 ?>
 
@@ -48,7 +52,7 @@ else {
     <div class="hero-body">
     <div class="address is-centered">
     <h5 class="title is-5">Add an address</h5>
-        <form>
+        <form method="post" action="addressBook.php">
             <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">

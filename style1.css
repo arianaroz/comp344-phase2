@@ -184,6 +184,15 @@ a:visited {
     padding: 10px;
 
 }
+.details{
+    margin: auto;
+    margin-top: -270px;
+
+    width: 400px;
+    height: 140px;
+    border-bottom: 1px solid black;
+    position: relative;
+}
 
 #user{
     float: left;
