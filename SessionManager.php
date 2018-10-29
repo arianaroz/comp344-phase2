@@ -165,10 +165,18 @@ function login($username, $password) {
 
 	$shopper_id = check_credentials($username, $password);
 	if ($shopper_id > 0) {
+		$dbo = db_connect();
+		$stmt = $dbo->prepare("SELECT * FROM Session WHERE Shopper_id= ?");
+		$stmt->execute(array($shopper_id));
+		$res = $stmt->fetch(PDO::FETCH_ASSOC);
+		if (!empty($res)) {
+			$stmt = $dbo->prepare("DELETE FROM Session WHERE Shopper_id= ?");
+			$stmt->execute(array($shopper_id));
+		}
 		session_regenerate_id(TRUE);
 
 		$sessid = session_id();
-		$dbo = db_connect();
+
 		$t = Date('Y-m-d H:i:s');
 		$query  = "INSERT INTO Session (id, Shopper_id, time) VALUES (?,?,?)";
 
