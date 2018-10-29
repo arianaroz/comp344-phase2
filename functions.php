@@ -1,16 +1,13 @@
 <?php
-//include("common_db.php");
-//include("db.php");
-
 
 // Regular Expression for form validation
-function name_validation($text){
-  $re = "/^[A-Za-z\s\']+$/";
+function username_validation($text){
+  $re = "/^[A-Za-z\S]+$/";
 
-  if (strlen($text)<1 || strlen($text)>120){
+  if (strlen($text)<4 || strlen($text)>120){
     echo "
     <div class='regi_error'>
-    Please enter a valid name
+    Please enter a valid username
     </div>
     ";
     return false;
@@ -19,7 +16,7 @@ function name_validation($text){
   else if (preg_match($re, $text)==false){
     echo "
     <div class='regi_error'>
-    Please enter a valid name
+    Please enter a valid username
     </div>
     ";
     return false;
@@ -35,7 +32,7 @@ function email_validation($text){
   if (preg_match($re, $text)==false){
     echo "
     <div class='regi_error'>
-    Please enter a valid MQ email address
+    Please enter a valid email address
     </div>
     ";
     return false;
@@ -47,9 +44,9 @@ function email_validation($text){
 }
 
 function password_validation($text){
-  $re = "/^[A-Za-z]+[0-9]+[A-Za-z]*[0-9]*$/";
+  $re = "/^[A-Za-z]+[0-9]+[A-Za-z0-9]*$/";
 
-  if (strlen($text)<6 || strlen($text)>10){
+  if (strlen($text)<8 || strlen($text)>30){
     echo "
     <div class='regi_error'>
     Please enter a valid password
@@ -73,15 +70,40 @@ function password_validation($text){
 
 }
 
+function phone_validation($text){
+  $re = "/^\d+$/";
+
+  if (strlen($text)<8 || strlen($text)>15){
+    echo "
+    <div class='regi_error'>
+    Please enter a valid phone number
+    </div>
+    ";
+    return false;
+  }
+
+  else if (preg_match($re, $text)==false){
+    echo "
+    <div class='regi_error'>
+    Please enter valid a phone number
+    </div>
+    ";
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
 function passwordCheck($pass1, $pass2){
     global $error;
     if ($pass1 != $pass2){
         $error = "Passwords do not match.";
-        /*echo "
+        echo "
         <div class='regi_error'>
         Passwords do not match.
         </div>
-        ";*/
+        ";
         return false;
     }
     else{

@@ -12,7 +12,7 @@ include("functions.php");
 
 <html>
 <head>
-  <!-- <script type="text/javascript" src="validation.js" ></script> -->
+  <script type="text/javascript" src="validation.js" ></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" type="text/css" href="style1.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
@@ -57,7 +57,7 @@ include("functions.php");
     <div class="g-recaptcha" data-sitekey="6LenP3UUAAAAAD2ss0_c0u4509yIayZT2nvLqr9v"></div>
 </div>
     <div class="field">
-    <button class="button is-fullwidth has-background-primary" type="submit" class="button" name="reg_button">Register </button>
+    <button class="button is-fullwidth has-background-primary" type="submit" onclick="return validate();" class="button" name="reg_button">Register </button>
 </div>
 </div>
   </form>
@@ -117,19 +117,21 @@ include("functions.php");
         $_confirmPass = $_POST['confirmPassword'];
 
 
-        // if (name_validation($_username)==false){
-        //   return;
-        // }
-        // if (email_validation($_email)==false) {
-        //   return;
-        // }
-        // elseif (password_validation($_password)==false) {
-        //   return;
-        //
-        // }
-        // elseif (passwordCheck($_password, $_confirmPass)== false){
-        //     return;
-        // }
+        if (username_validation($_username)==false){
+          return;
+        }
+        if (email_validation($_email)==false) {
+          return;
+        }
+        elseif (password_validation($_password)==false) {
+          return;
+        }
+        elseif (phone_validation($_phone)==false) {
+          return;
+        }
+        elseif (passwordCheck($_password, $_confirmPass)== false){
+            return;
+        }
 
         $hashed_password = password_hash($_password, PASSWORD_DEFAULT);
 
