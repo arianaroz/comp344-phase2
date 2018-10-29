@@ -32,6 +32,7 @@ if(isset($_POST['logout'])){
 </head>
 
 <body>
+    <?php include("header.php"); ?>
     <section class="hero has-background-white-bis is-large">
         <div class="hero-body">
             <div class="container">
