@@ -5,6 +5,13 @@ require_once("config.php");
 
 $error = "";
 
+if(store_get_shopper_id() > 0){
+
+    header('Location: account.php');
+	exit();
+}
+
+
 if(isset($_POST['login'])) {
 
 	if(login($_POST['username'], $_POST['password'])){
@@ -12,7 +19,7 @@ if(isset($_POST['login'])) {
 		header('Location: index.php');
 		exit();
 	}
-
+	
 	else {
 		$error= "Invalid credentials";
 	}
@@ -32,7 +39,7 @@ if(isset($_POST['login'])) {
 </head>
 
 <body>
-		<?php include("header.php"); ?>
+<?php include("header.php"); ?>
 <section class="hero has-background-white-bis is-medium">
 
     <div class="hero-body">

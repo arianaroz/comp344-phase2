@@ -1,6 +1,4 @@
 <?php
-
-
 require_once("common_db.php");
 require_once("SessionManager.php");
 
@@ -9,7 +7,7 @@ include("config.php");
 
 
 if(store_get_shopper_id() > 0){
-    echo "you are logged in";
+    //shopper is logged in
 }
 else {
     echo " you are not logged in";

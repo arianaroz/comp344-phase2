@@ -9,11 +9,13 @@
 <nav class="navbar " role="navigation" aria-label="main navigation">
     <div class="nav">
         <span><img src="images/laptop.png" width="70" height="70"></span>
-        <span><img id="logo" src="images/logo.png" width="200"></span>
-
+        <a href="index.php"><img id="logo" href = "index.php" src="images/logo3.png" width="250"  /></a>
     </div>
-
+     <div class="navbar-end">
+         <div class="navbar-item">
+         <a href="signin.php"><img id="userlogo"src="images/user.png" width="30" height="40" /></a>
+     </div>
+     </div>
 
 </nav>
-
 </html>
