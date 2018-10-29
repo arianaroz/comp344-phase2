@@ -3,6 +3,7 @@ require_once("common_db.php");
 require("SessionManager.php");
 require_once("config.php");
 
+
 $error = "";
 
 if(store_get_shopper_id() > 0){
@@ -11,6 +12,9 @@ if(store_get_shopper_id() > 0){
 	exit();
 }
 
+?>
+<?php
+$error = '';
 
 if(isset($_POST['login'])) {
 
@@ -19,13 +23,14 @@ if(isset($_POST['login'])) {
 		header('Location: index.php');
 		exit();
 	}
-	
+
 	else {
 		$error= "Invalid credentials";
 	}
 
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
