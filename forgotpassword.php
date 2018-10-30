@@ -14,7 +14,7 @@ require_once("common_db.php");
 
 
 <body>
-
+<?php include("header.php"); ?>
   <section class="hero has-background-white-bis is-medium">
     <div class="hero-body">
       <div class="logincontainer has-background-white">
