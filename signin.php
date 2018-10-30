@@ -5,6 +5,12 @@ require_once("config.php");
 ?>
 <?php
 $error = '';
+
+if(store_get_shopper_id() > 0){
+	header('Location: account.php');
+	exit();
+
+}
 if(isset($_POST['login'])) {
 
 	if(login($_POST['username'], $_POST['password'])){
