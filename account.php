@@ -1,8 +1,7 @@
 <?php
-require_once("common_db.php");
-require("SessionManager.php");
-require_once("config.php");
-
+include_once("common_db.php");
+include_once("SessionManager.php");
+include_once("config.php");
 $db= db_connect();
 $user = "";
 
@@ -44,7 +43,6 @@ if(isset($_POST['logout'])){
 }
 ?>
 
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">

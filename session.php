@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 require_once("common_db.php");
 
 function store_get_shopper_id() {
@@ -139,4 +139,4 @@ session_set_save_handler(
 	"store_session_gc"
 );
 	session_start();
-	?>
+	?> -->

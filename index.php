@@ -1,22 +1,17 @@
 <?php
-require_once("common_db.php");
-require_once("SessionManager.php");
-include("functions.php");
-include("config.php");
-?>
-<?php
-if(isset($_POST['logout'])){
-    logout();
-}
+include_once("common_db.php");
+include_once("SessionManager.php");
+include_once("functions.php");
+include_once("config.php");
 ?>
 
 <?php
-if(store_get_shopper_id() > 0){
-
-}
-else {
-
-}
+// if(store_get_shopper_id() > 0){
+//
+// }
+// else {
+//
+// }
 ?>
 
 <html>
@@ -36,7 +31,7 @@ else {
                 <form method="post">
                     This is the homepage.
 
-                  
+
                 </form>
           </div>
         </div>

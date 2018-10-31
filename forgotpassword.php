@@ -1,5 +1,5 @@
 <?php
-require_once("common_db.php");
+include_once("common_db.php");
 ?>
 <html>
 <head>
@@ -12,9 +12,8 @@ require_once("common_db.php");
 <script type="text/javascript" src="validation.js" ></script>
 </head>
 
-
-<body>
 <?php include("header.php"); ?>
+<body>
   <section class="hero has-background-white-bis is-medium">
     <div class="hero-body">
       <div class="logincontainer has-background-white">
@@ -66,19 +65,25 @@ require_once("common_db.php");
   //User submits email in form
   if (isset($_POST['submit'])){
     $_email = $_POST['email'];
+
+    // PHP email validation function
+    if (email_validation($_email)==false) {
+      return;
+    }
     //db connection
     $db = db_connect();
 
+    // Query to check if user email address already exists in the database
     $stmt = $db->prepare("SELECT sh_email, shopper_id FROM Shopper WHERE sh_email= ?");
     $stmt->execute(array($_email));
     $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
+    // If the return result is not empty
     if (!empty($res)) {
       $sql_email = $res["sh_email"];
       $shopper_id = $res["shopper_id"];
     }
-    //Users email not in the database
+    // If users email not in the database
     else {
       echo "
       <div class='regi_error'>
@@ -92,23 +97,27 @@ require_once("common_db.php");
     $stmt = $db->prepare("DELETE FROM pass_session WHERE user_id= ?");
     $stmt->execute(array($shopper_id));
 
-    //Random string generator for generating token
+    // Random string generator for generating token
     $token = md5(uniqid(rand(), true));
+    // Adds an extra 24 hours to the current time
     $nextDay = time() + (1 * 24 * 60 * 60);
-    //$nextDay = time() + (120);
+    // Gets the current date and time and adds the extra 24 hours
+    // It gives the user a day of expiry time to use the token
     $exp_time = Date('Y-m-d H:i:s', $nextDay);
 
+    // Query to put the reset password token into the database
     $stmt = $db->prepare("INSERT INTO pass_session VALUES (?, ?, ?)");
 
+    // If insertion is successful
     if ($stmt->execute(array($shopper_id, $token, $exp_time))) {
-
-      //EMAIL CONFIRMATION
-      // $msg = "Thank you for your registration. Your user name is: " . $_email . ". From: mohammed.tanvir-hossain@students.mq.edu.au";
-      // mail($_email,'Registration Successful',$msg,'From: mohammed.tanvir-hossain@students.mq.edu.au','-f mohammed.tanvir-hossain@students.mq.edu.au');
 
       //echo "<script>window.location = '/index.php'</script>";
       $host = $_SERVER['HTTP_HOST'];
       $url = $host . '/resetpassword.php?token=' . $token;
+
+      // EMAIL CONFIRMATION
+      $msg = "Here is your password reset link: " . $url . ". From: Super Notebook Store";
+      mail($_email,'Password Reset',$msg);
 
       echo "<script>alert('$url');</script>";
 

@@ -1,8 +1,7 @@
 <?php
-require_once("common_db.php");
-require("SessionManager.php");
-require_once("config.php");
-
+include_once("common_db.php");
+include_once("SessionManager.php");
+include_once("config.php");
 $db= db_connect();
 $user = "";
 
@@ -34,10 +33,10 @@ if(store_get_shopper_id() > 0){
     //if no addresses are saved
     else if($stmt->rowCount() <0){
             echo " you have no addresses saved.";
-    //    }
     }
+  }
 
-else {
+  else {
     header('Location: signin.php');
     exit();
 }
@@ -61,10 +60,9 @@ if(isset($_POST['submit'])){
     $stmt->execute(array($sid, $title, $firstname, $lastname,$street1, $street2,$city,$state,$postcode,$country));
 
 }
-else {
-}
 
-}
+
+
 if(isset($_POST['logout'])){
     logout();
 
@@ -74,8 +72,6 @@ if(isset($_POST['logout'])){
 
 
 ?>
-
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -129,7 +125,7 @@ if(isset($_POST['logout'])){
     </tr>
     <tr>
         <td>
-            
+
         </tr>
     <tr><td></br></td></tr>
     <th id="b"></th>

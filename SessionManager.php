@@ -2,6 +2,7 @@
 require_once("common_db.php");
 
 function store_get_shopper_id() {
+
 	global $store_session_con;
 	$dbo = db_connect();
 
@@ -140,6 +141,7 @@ session_set_save_handler(
 
 session_start();
 
+
 function check_credentials($username, $password) {
 	$query  = "SELECT shopper_id, sh_password FROM Shopper ";
 	$query .= "WHERE sh_username = ?";
@@ -165,18 +167,10 @@ function login($username, $password) {
 
 	$shopper_id = check_credentials($username, $password);
 	if ($shopper_id > 0) {
-		$dbo = db_connect();
-		$stmt = $dbo->prepare("SELECT * FROM Session WHERE Shopper_id= ?");
-		$stmt->execute(array($shopper_id));
-		$res = $stmt->fetch(PDO::FETCH_ASSOC);
-		if (!empty($res)) {
-			$stmt = $dbo->prepare("DELETE FROM Session WHERE Shopper_id= ?");
-			$stmt->execute(array($shopper_id));
-		}
 		session_regenerate_id(TRUE);
 
 		$sessid = session_id();
-
+		$dbo = db_connect();
 		$t = Date('Y-m-d H:i:s');
 		$query  = "INSERT INTO Session (id, Shopper_id, time) VALUES (?,?,?)";
 
@@ -201,3 +195,5 @@ function logout() {
 	session_destroy();
 	// End the session;
 }
+
+?>
