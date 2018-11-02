@@ -122,8 +122,8 @@ include_once("functions.php");
       $msg = "Here is your password reset link: " . $url . ". From: Super Notebook Store";
       mail($_email,'Password Reset',$msg);
 
-      echo "<script>alert('$url');</script>";
-        header('Location: index.php');
+      
+        header('Location: resetLinkSuccess.php');
         exit();
 
     }
