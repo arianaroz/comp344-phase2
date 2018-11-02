@@ -44,18 +44,18 @@ if(isset($_POST['submit'])){
     $message= "";
 }
 
-//delete an address
+/*delete an address
 if(isset($_POST['remove'])){
-    $a = $_POST['shaddr_id'];
+    $a = $_POST['addid'];
 
-    $sql = "DELETE FROM Shaddr WHERE shaddr_id = :addid";
+    $sql = "DELETE FROM Shaddr WHERE shaddr_id = :add";
     $stmt= $db->prepare($sql);
-    $statement->bindParam('addid',$a);
+    $statement->bindParam('add',$a);
     $stmt->execute($sql);
 
     $message="Address removed.";
-    header('location: addressBook.php');
 }
+*/
 
 //call logout function
 if(isset($_POST['logout'])){
@@ -128,7 +128,7 @@ function hide(){
     <tr>
     <form action="POST" action="addressBook.php">
         <td>
-        <?= $addid= $row['shaddr_id'];?>
+        <div id="addid"><input type="hidden" name"addid"><?= $addid= $row['shaddr_id'];?></input></div>
         <?=$row['sh_title']; ?>
         <?=$row['sh_firstname'];?>
          <?=$row['sh_familyname'];?>
@@ -151,7 +151,6 @@ function hide(){
     <tr>
 
         <td> <?=$row['sh_country'];?></td>
-        <td><button id="delete"class="button is-danger is-outlined is-right" type="submit" name="remove"> Remove</button></td>
     </tr>
 </form>
     <tr>

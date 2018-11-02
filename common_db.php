@@ -2,10 +2,10 @@
 // common_db.php - database connection using PHP::PDO ***
 $dbloc = "local"; // Use "local", "mq" or add others as appropriate
 if ($dbloc == "mq") {
-	$dbhost = 'animatrix.science.mq.edu.au';
+	$dbhost = 'ash.science.mq.edu.au';
 	$sid = "one";
-	$dbusername = '<insert your student id>';
-	$dbuserpassword = '<insert the SID password>';
+	$dbusername = '44616732';
+	$dbuserpassword = 'QXJpYW5hIFJv';
 	$oraDB  = "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=animatrix.science.mq.edu.au)";
 	$oraDB .= "(PORT=1521)))(CONNECT_DATA=(SID=one)))";
 }
