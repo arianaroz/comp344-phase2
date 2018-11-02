@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
 
 //delete an address
 if(isset($_POST['remove'])){
-    echo $a = $_POST['shaddr_id'];
+    $a = $_POST['shaddr_id'];
 
     $sql = "DELETE FROM Shaddr WHERE shaddr_id = :addid";
     $stmt= $db->prepare($sql);
@@ -128,7 +128,7 @@ function hide(){
     <tr>
     <form action="POST" action="addressBook.php">
         <td>
-        <div id="addid"><input type="hidden"><?= $addid= $row['shaddr_id'];?></input></div>
+        <?= $addid= $row['shaddr_id'];?>
         <?=$row['sh_title']; ?>
         <?=$row['sh_firstname'];?>
          <?=$row['sh_familyname'];?>
