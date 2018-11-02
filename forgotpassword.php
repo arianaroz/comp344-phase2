@@ -112,9 +112,11 @@ include_once("functions.php");
     // If insertion is successful
     if ($stmt->execute(array($shopper_id, $token, $exp_time))) {
 
-      //echo "<script>window.location = '/index.php'</script>";
-      $host = $_SERVER['HTTP_HOST'];
-      $url = $host . '/resetpassword.php?token=' . $token;
+      // Token URL Generation
+      $get_uri=$_SERVER['REQUEST_URI'];
+      $uri = "".$get_uri;
+      $uri = substr($uri, 0, -18);
+      $url = 'https://platypus.science.mq.edu.au' . $uri . 'resetpassword.php?token=' . $token;
 
       // EMAIL CONFIRMATION
       $msg = "Here is your password reset link: " . $url . ". From: Super Notebook Store";

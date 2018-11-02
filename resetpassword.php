@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 
 include_once("common_db.php");
 include("functions.php");
@@ -109,8 +109,14 @@ if (isset($_POST['reset'])){
     $stmt = $db->prepare("DELETE FROM pass_session WHERE token= ?");
     $stmt->execute(array($token));
 
+    // Grabbing location
+    $get_uri=$_SERVER['REQUEST_URI'];
+    $uri = "".$get_uri;
+    $uri = substr($uri, 0, -17);
+    $url = 'https://platypus.science.mq.edu.au' . $uri . 'index.php';
+
     // Redirects to the home page
-    echo "<script>window.location = '/index.php'</script>";
+    echo "<script>window.location = '$url'</script>";
 
   }
 
