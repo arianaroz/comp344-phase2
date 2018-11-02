@@ -22,6 +22,7 @@ if(store_get_shopper_id() > 0){
     foreach ($res as $row){
         $user= $row['sh_username'];
     }
+
 if(isset($_POST['submit'])){
     $title= $_POST['title'];
     $firstname = $_POST['firstname'];
@@ -40,16 +41,17 @@ if(isset($_POST['submit'])){
     $stmt= $db->prepare($sql);
     $stmt->execute(array($sid, $title, $firstname, $lastname,$street1, $street2,$city,$state,$postcode,$country));
 
-    $message= "Address Saved! View your address book to see changes.";
+    $message= "";
 }
 
-if(isset($_GET['remove'])){
-    echo $a = $_GET['shaddr_id'];
+//delete an address
+if(isset($_POST['remove'])){
+    echo $a = $_POST['shaddr_id'];
 
-    $sql = "DELETE FROM Shaddr WHERE shaddr_id = :add";
+    $sql = "DELETE FROM Shaddr WHERE shaddr_id = :addid";
     $stmt= $db->prepare($sql);
-    $statement->bindParam('add',$a);
-    $stmt->execute();
+    $statement->bindParam('addid',$a);
+    $stmt->execute($sql);
 
     $message="Address removed.";
     header('location: addressBook.php');
@@ -106,21 +108,25 @@ function hide(){
     <?php
     $db= db_connect();
     //retrieve users addresses
-    $stmt = $db->prepare("SELECT shaddr_id, sh_title, sh_firstname, sh_familyname, sh_street1, sh_street2, sh_city, sh_state, sh_postcode, sh_country
-        FROM Shaddr WHERE shopper_id = ?");
-    $stmt->execute(array($sid));
+    $sql=("SELECT shaddr_id, sh_title, sh_firstname, sh_familyname, sh_street1, sh_street2, sh_city, sh_state, sh_postcode, sh_country
+        FROM Shaddr WHERE shopper_id = :sid");
+        try{
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam('sid',$sid);
+		$stmt->execute();
+    }
+    catch (PDOException $ex) {
+		echo $ex->getMessage();
+		die ("Invalid query");
+	}
 
-    $stmt->fetch(PDO::FETCH_ASSOC);
-
-    //check for address results and output
-    if($stmt->rowCount() > 0){
-        //show addresses below
-
-    foreach($stmt as $row)
- {
-     ?>   <tr><td></br></td></tr>
+    //display address
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    //show addresses below
+    ?>
+    <tr><td></br></td></tr>
     <tr>
-    <form action="GET" action="addressBook.php">
+    <form action="POST" action="addressBook.php">
         <td>
         <div id="addid"><input type="hidden"><?= $addid= $row['shaddr_id'];?></input></div>
         <?=$row['sh_title']; ?>
@@ -156,18 +162,14 @@ function hide(){
     <th id="b"></th>
     <?php
     }
-}
-else if($stmt->rowCount() <0){
-            echo " you have no addresses saved.";
-    }
-    ?>
+   ?>
 
 </table>
 </br>
+<?php echo $message ?>
 <button class="button is-fullwidth is-primary is-outlined" id="add" onclick="show();"> Add an address</button>
 </div>
 <div>
-<?php echo $message ?>
 </div>
 </div>
 
@@ -175,7 +177,7 @@ else if($stmt->rowCount() <0){
 <div class="modal-background"></div>
 <div class="modal-content">
     <h5 id="A" class="title is-5">Add an address</h5>
-        <form class="addAddress" method="post" action="addressBook.php">
+        <form class="addAddress" method="post" action="">
         <div class="field is-horizontal">
             <div class="field-body">
             <input class="input" id="title" type="text" name="title" maxlength="4" placeholder="Title" required>
