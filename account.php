@@ -55,7 +55,7 @@ if(isset($_POST['logout'])){
 
 <body>
 <?php include("header.php"); ?>
-<section class="hero has-background-white-bis is-medium">
+<section class="hero has-background-white-bis is-large">
 <div class="level-right" id="user"> Welcome <?php echo $user ?> </div>
 <?php include("menu.php") ?>
 <div class="hero-body">

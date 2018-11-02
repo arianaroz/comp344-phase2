@@ -121,6 +121,8 @@ include_once("functions.php");
       mail($_email,'Password Reset',$msg);
 
       echo "<script>alert('$url');</script>";
+        header('Location: index.php');
+        exit();
 
     }
 

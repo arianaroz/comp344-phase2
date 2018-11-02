@@ -76,7 +76,7 @@ if(isset($_POST['login'])) {
 </div>
 </form>
 <div class="field ">
-    <div class="is-size-7" id="passlink"> <a id="passwordlink" href="forgotPassword.php"> Forgot your password? </a> </div>
+    <div class="is-size-7" id="passlink"> <a id="passwordlink" href="forgotpassword.php"> Forgot your password? </a> </div>
     <div class="is-size-7" id="link">Don't have an account? <a id="registerlink" href="register.php">Sign Up</a></div>
 </div>
 </div>

@@ -141,7 +141,6 @@ a:visited {
 
 .address{
     margin: auto;
-    margin-top: -30%;
     margin-bottom: 10%;
     width: 600px;
     padding: 1em;
@@ -186,7 +185,7 @@ a:visited {
 }
 .details{
     margin: auto;
-    margin-top: -270px;
+    margin-top: -370px;
     width: 400px;
     height: 140px;
     border-bottom: 1px solid black;
@@ -195,7 +194,7 @@ a:visited {
 
 .addresses{
     margin: auto;
-    margin-top: -37%;
+    margin-top: -140px;
     width: 650px;
     padding: 2em;
     margin-bottom: 25%;

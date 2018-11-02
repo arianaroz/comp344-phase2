@@ -5,10 +5,7 @@ include_once("config.php");
 $db= db_connect();
 $user = "";
 $message = "";
-if(store_get_shopper_id() <0){
-    header('location: signin.php');
-    exit();
-}
+
 if(store_get_shopper_id() > 0){
     //Get the shopper_id of current logged in user from the session table
     $sid = store_get_shopper_id();
@@ -43,29 +40,20 @@ if(isset($_POST['submit'])){
 
     $message= "";
 }
-
-/*delete an address
-if(isset($_POST['remove'])){
-    $a = $_POST['addid'];
-
-    $sql = "DELETE FROM Shaddr WHERE shaddr_id = :add";
-    $stmt= $db->prepare($sql);
-    $statement->bindParam('add',$a);
-    $stmt->execute($sql);
-
-    $message="Address removed.";
 }
-*/
-
-//call logout function
-if(isset($_POST['logout'])){
-    logout();
-
+else{
     header('location: signin.php');
     exit();
 }
 
+//call logout function
+if(isset($_POST['logout'])){
+    logout();
+    header('Location: signin.php');
+    exit();
 }
+
+
 
 
 ?>
@@ -96,12 +84,12 @@ function hide(){
 
 <body>
 <?php include("header.php"); ?>
-<section class="hero has-background-white-bis is-large">
+<section class="hero has-background-white-bis is-medium">
 <div class="level-right" id="user"> Welcome <?php echo $user ?> </div>
 <?php include("menu.php")?>
 
-<div class="hero-body is-large">
-    <div class="addresses">
+<div class="hero is-flex-desktop-only">
+<div class="addresses">
     <table>
     <th id="t">Addresses</th>
 </br>
