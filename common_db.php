@@ -1,6 +1,5 @@
 <?php
 // common_db.php - database connection using PHP::PDO ***
-$dbloc = "mqs"; // Use "local", "mq" or add others as appropriate
 $dbloc = "mqs";// Use "local", "mq" or add others as appropriate
 if ($dbloc == "mqs"){
         $dbhost = 'ash.science.mq.edu.au';
