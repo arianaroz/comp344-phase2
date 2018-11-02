@@ -5,15 +5,6 @@ include_once("functions.php");
 include_once("config.php");
 ?>
 
-<?php
-// if(store_get_shopper_id() > 0){
-//
-// }
-// else {
-//
-// }
-?>
-
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style1.css">

@@ -4,7 +4,11 @@ include_once("SessionManager.php");
 include_once("config.php");
 $db= db_connect();
 $user = "";
-
+$message = "";
+if(store_get_shopper_id() <0){
+    header('location: signin.php');
+    exit();
+}
 if(store_get_shopper_id() > 0){
     //Get the shopper_id of current logged in user from the session table
     $sid = store_get_shopper_id();
@@ -18,29 +22,6 @@ if(store_get_shopper_id() > 0){
     foreach ($res as $row){
         $user= $row['sh_username'];
     }
-
-    //retrieve users addresses
-    $stmt = $db->prepare("SELECT sh_title, sh_firstname, sh_familyname, sh_street1, sh_street2, sh_city, sh_state, sh_postcode, sh_country
-        FROM Shaddr WHERE shopper_id = ?");
-    $stmt->execute(array($sid));
-
-    $stmt->fetch(PDO::FETCH_ASSOC);
-
-    //check for address results and output
-    if($stmt->rowCount() > 0){
-        //show addresses
-    }
-    //if no addresses are saved
-    else if($stmt->rowCount() <0){
-            echo " you have no addresses saved.";
-    }
-  }
-
-  else {
-    header('Location: signin.php');
-    exit();
-}
-
 if(isset($_POST['submit'])){
     $title= $_POST['title'];
     $firstname = $_POST['firstname'];
@@ -52,22 +33,36 @@ if(isset($_POST['submit'])){
     $postcode= $_POST['postcode'];
     $country= $_POST['country'];
 
-
+    //insert the new address into the Shaddr table according to shopper id
     $sql= "INSERT INTO Shaddr (shopper_id, sh_title, sh_firstname, sh_familyname, sh_street1, sh_street2, sh_city, sh_state, sh_postcode, sh_country)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt= $db->prepare($sql);
     $stmt->execute(array($sid, $title, $firstname, $lastname,$street1, $street2,$city,$state,$postcode,$country));
 
+    $message= "Address Saved! View your address book to see changes.";
 }
 
+if(isset($_GET['remove'])){
+    echo $a = $_GET['shaddr_id'];
 
+    $sql = "DELETE FROM Shaddr WHERE shaddr_id = :add";
+    $stmt= $db->prepare($sql);
+    $statement->bindParam('add',$a);
+    $stmt->execute();
 
+    $message="Address removed.";
+    header('location: addressBook.php');
+}
+
+//call logout function
 if(isset($_POST['logout'])){
     logout();
 
     header('location: signin.php');
     exit();
+}
+
 }
 
 
@@ -80,28 +75,55 @@ if(isset($_POST['logout'])){
 <link rel="stylesheet" type="text/css" href="style1.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-</head>
-<script src="text/javascript">
+<link rel=:script href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+<script type="text/javascript" src="validation.js" ></script>
+<script type="text/javascript">
+//show the address book form
+function show(){
+    document.getElementById("myModal").classList.add('is-active');
+
+    }
+//close the address form
+function hide(){
+    document.getElementById("myModal").classList.remove('is-active');
+
+}
 </script>
+</head>
+
 
 <body>
 <?php include("header.php"); ?>
 <section class="hero has-background-white-bis is-large">
-    <div class="level-right" id="user"> Welcome <?php echo $user ?> </div>
+<div class="level-right" id="user"> Welcome <?php echo $user ?> </div>
 <?php include("menu.php")?>
 
-
-<div class="hero-body is-small">
-    <div class ="addresses">
+<div class="hero-body is-large">
+    <div class="addresses">
     <table>
-    <colgroup>
     <th id="t">Addresses</th>
-</colgroup>
+</br>
     <?php
-    foreach($stmt as $row)  {?>
-    <tr><td></br></td></tr>
+    $db= db_connect();
+    //retrieve users addresses
+    $stmt = $db->prepare("SELECT shaddr_id, sh_title, sh_firstname, sh_familyname, sh_street1, sh_street2, sh_city, sh_state, sh_postcode, sh_country
+        FROM Shaddr WHERE shopper_id = ?");
+    $stmt->execute(array($sid));
+
+    $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //check for address results and output
+    if($stmt->rowCount() > 0){
+        //show addresses below
+
+    foreach($stmt as $row)
+ {
+     ?>   <tr><td></br></td></tr>
     <tr>
-        <td><?=$row['sh_title']; ?>
+    <form action="GET" action="addressBook.php">
+        <td>
+        <div id="addid"><input type="hidden"><?= $addid= $row['shaddr_id'];?></input></div>
+        <?=$row['sh_title']; ?>
         <?=$row['sh_firstname'];?>
          <?=$row['sh_familyname'];?>
      </td></tr>
@@ -121,8 +143,11 @@ if(isset($_POST['logout'])){
         <?=$row['sh_postcode'];?></td>
     </tr>
     <tr>
-        <td> <?=$row['sh_country'];?> </td>
+
+        <td> <?=$row['sh_country'];?></td>
+        <td><button id="delete"class="button is-danger is-outlined is-right" type="submit" name="remove"> Remove</button></td>
     </tr>
+</form>
     <tr>
         <td>
 
@@ -130,60 +155,71 @@ if(isset($_POST['logout'])){
     <tr><td></br></td></tr>
     <th id="b"></th>
     <?php
-        } ?>
+    }
+}
+else if($stmt->rowCount() <0){
+            echo " you have no addresses saved.";
+    }
+    ?>
 
 </table>
 </br>
+<button class="button is-fullwidth is-primary is-outlined" id="add" onclick="show();"> Add an address</button>
+</div>
+<div>
+<?php echo $message ?>
+</div>
+</div>
 
-</div>
-</div>
-<div class="address is-centered " id="add1">
-    <h5 class="title is-5">Add an address</h5>
-        <form method="post" action="addressBook.php">
+<div class="modal" id="myModal">
+<div class="modal-background"></div>
+<div class="modal-content">
+    <h5 id="A" class="title is-5">Add an address</h5>
+        <form class="addAddress" method="post" action="addressBook.php">
         <div class="field is-horizontal">
             <div class="field-body">
-            <input class="input" id="title" type="text" name="title" placeholder="Title" required>
+            <input class="input" id="title" type="text" name="title" maxlength="4" placeholder="Title" required>
         </div>
       <div class="field-body">
         <div class="field">
             <input class="input" type="text" id="first"  name="firstname" placeholder="Firstname" required>
         </div>
         <div class="field">
-            <input class="input" type="text"id="last" name="lastname" placeholder="Lastname" required>
+            <input class="input" type="text" id="last" name="lastname" placeholder="Lastname" required>
         </div>
       </div>
   </div>
 <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
-          <input class="input" type="text" name="street1" placeholder="Address line 1" required>
+          <input class="input" type="text" id="street1" name="street1" placeholder="Address line 1" required>
       </div>
   </div>
 </div>
       <div class="field is-horizontal">
          <div class="field-body">
       <div class="field">
-          <input class="input" type="text" name="street2"placeholder="Address line 2" >
+          <input class="input" type="text" id="street2" name="street2"placeholder="Address line 2" >
       </div>
     </div>
   </div>
   <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">
-            <input class="input" type="text" name="city"placeholder="City" required>
+            <input class="input" type="text" id="city" name="city"placeholder="City" required>
         </div>
         <div class="field">
-            <input class="input" type="text" name="state" placeholder="State" required>
+            <input class="input" type="text" id="state" name="state" placeholder="State" required>
         </div>
     </div>
     </div>
 
     <div class="field-body">
     <div class="field">
-        <input class="input" type="text" name="country" placeholder="Country" required>
+        <input class="input" type="text" id="country" name="country" placeholder="Country" required>
       </div>
       <div class="field">
-          <input class="input" type="text" name="postcode" placeholder="Postcode" >
+          <input class="input" type="text" id="postcode" name="postcode" maxlength="4" placeholder="Postcode" >
       </div>
   </div>
 </br>
@@ -191,13 +227,17 @@ if(isset($_POST['logout'])){
 <div class="field-body">
   <div class="field">
     <p class="control">
-      <button class="button is-fullwidth has-background-primary" type="submit" name="submit">Save address</button>
+      <button class="button is-fullwidth has-background-primary" onclick="return addressValidate();" type="submit" name="submit">Save address</button>
     </p>
   </div>
 </div>
 </form>
 </div>
+</div>
+<button class="modal-close is-large" onclick="hide();"aria-label="close"></button>
 
+</div>
+</div>
 </section>
 
 <div class="footer">

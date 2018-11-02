@@ -87,7 +87,7 @@ function validate_login(){
   var text = document.getElementById('username').value;
 
   if (text.length<4 || text.length>120){
-    window.alert('Please enter a valid username');
+    window.alert('Username must be at least 4 characters');
     return false;
   }
   else if (re.test(text)==false){
@@ -160,4 +160,33 @@ function validate_login(){
     return false;
   }
 
+  }
+
+  function addressValidate(){
+      var number = /^[0-9]+$/;
+      var re = /^[A-Za-z]+$/; //letters only
+
+      var post= document.getElementById('postcode').value;
+      var title = document.getElementById('title').value;
+      var country = document.getElementById('country').value;
+
+      //validate postcode is 4 numbers
+    if(post.length != 4){
+        alert("Please enter a 4 digit postcode number");
+        return false;
+    }
+    //validate postcode is a number
+    if (!number.test(post)){
+     alert("Please enter a valid postcode");
+     return false;
+    }
+    //validate title
+    if(!title.match(/^(mr|Mr|mrs|Mrs|ms|Ms|miss|Miss|Dr|)$/)){
+        alert("please enter a valid title");
+        return false;
+    }
+    if(!re.test(country)){
+        alert("please enter a valid country");
+        return false;
+    }
   }

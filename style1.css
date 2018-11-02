@@ -187,7 +187,6 @@ a:visited {
 .details{
     margin: auto;
     margin-top: -270px;
-
     width: 400px;
     height: 140px;
     border-bottom: 1px solid black;
@@ -197,31 +196,31 @@ a:visited {
 .addresses{
     margin: auto;
     margin-top: -37%;
-    width: 640px;
-    height: 200px;
+    width: 650px;
     padding: 2em;
     margin-bottom: 25%;
 }
 
 #title{
-    width: 100px;
+    width: 110px;
 }
 #first{
-    width: 220px;
+    width: 252px;
 }
 #last{
-    width: 220px;
+    width: 252px;
 }
-
+/*
 #t{
     border-bottom: 1px solid black;
-    width: 600px;
 }
+*/
 #b{
     border-bottom: 1px solid #bfc0c1;
-
 }
+
 table{
+    width: 930px;
 
 }
 
@@ -230,6 +229,7 @@ table{
 
 }
 #delete{
+    margin-left: -25%;
 }
 
 #user{
@@ -242,4 +242,18 @@ table{
     border: none;
     font-size: 15px;
     padding-left: 1%;
+}
+
+#A{
+    color: white;
+}
+#element-toggle {
+  display: none;
+}
+
+#element-toggle:checked~ #myModal {
+  display: flex;
+}
+#addid{
+    display: none;
 }

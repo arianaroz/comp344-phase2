@@ -10,7 +10,7 @@ function store_get_shopper_id() {
 		$store_session_con = db_connect();
 	}
 
-	$query  = "SELECT Shopper_id FROM Session WHERE id = ? AND Shopper_id IS NOT NULL";
+	$query  = "SELECT Shopper_id FROM Session WHERE id = ?"; /*AND Shopper_id IS NOT NULL";*/
 
 
 	try {
@@ -140,7 +140,6 @@ session_set_save_handler(
 );
 
 session_start();
-
 
 function check_credentials($username, $password) {
 	$query  = "SELECT shopper_id, sh_password FROM Shopper ";

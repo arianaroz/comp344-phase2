@@ -30,6 +30,7 @@ include_once("functions.php");
 
               <div class="field">
                 <input class="input" id ="username" type="text" name="username" placeholder="Username" required><br/>
+                    <div class="control"><span class="is-size-7">Minimum 4 characters</span></div>
               </div>
 
               <div class="field">
@@ -41,6 +42,7 @@ include_once("functions.php");
               </div>
               <div class="field">
                 <input class="input" id ="password" type="password" name="password" placeholder="Password" required><br/>
+                <div class="control"><span class="is-size-7">Minimum 8 characters</span></div>
               </div>
               <div class="field">
                 <input class="input" id ="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" required><br/>
