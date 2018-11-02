@@ -176,8 +176,8 @@ if (isset($_POST['reg_button'])){
     if ($stmt->execute(array($_username, $hashed_password, $_email, $_phone))) {
 
       // EMAIL CONFIRMATION
-      // $msg = "Thank you for your registration. Your username is: " . $_username . ". From: Super Notebook Store";
-      // mail($_email,'Registration Successful',$msg);
+      $msg = "Thank you for your registration. Your username is: " . $_username . ". From: Super Notebook Store";
+      mail($_email,'Registration Successful',$msg);
 
       // Redirects to the registration successful page
       echo "<script>window.location = '/regSuccess.php'</script>";
