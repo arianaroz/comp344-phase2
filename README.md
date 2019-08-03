@@ -1,2 +1,4 @@
 # comp344-phase2
-Repository for comp344 assignment 2, phase 2 - Shopper/User Registration Sub-System
+Repository for COMP344 Ecommerce Technology
+Assignment 2, Phase 2
+Shopper/User Registration Sub-System
